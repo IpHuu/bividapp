@@ -1,0 +1,146 @@
+import 'package:bividpharma/services/core_api_service.dart';
+import 'package:cron/cron.dart';
+import 'package:flutter/material.dart';
+
+class BividConnection {
+  static const String localMessageName = 'LocalMessage';
+  static const String messageOnlineName = 'OnlineMessage';
+  static const String signedMessageName = 'SignedMessage';
+  static const String _sendOnlineMessageMethod = 'SendOnlineMessage';
+
+  void Function(Exception?)? onCloseCallback;
+  void Function(Exception?)? onConnectingCallback;
+  void Function(String?)? onConnectedCallback;
+
+  final Cron _mySchedule = Cron();
+  late ScheduledTask? _myConnectTask;
+
+  //Bearer
+  final HttpConnectionOptions _httpOption = HttpConnectionOptions(
+    accessTokenFactory: () {
+      return Future.value(ApiCoreService.loginJwtToken);
+    },
+    logging: (level, message) => debugPrint('Log from server $message'),
+  );
+
+  late HubConnection? _hubCon;
+
+  HubConnection? get connection => _hubCon;
+  HubConnection get _myHub => _hubCon!;
+
+  // ignore: unused_element
+  Future<void> _initMySchedule() async {
+    try {
+      _myConnectTask =
+          _mySchedule.schedule(Schedule.parse('*/1 * * * * *'), _goConnectHub);
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+      if (_myConnectTask != null) {
+        await _myConnectTask!.cancel();
+        _mySchedule.close();
+      }
+    }
+  }
+
+  void _goConnectHub() async {
+    debugPrint('Running schedule: ${DateTime.now().toString()}');
+    try {
+      if (_myHub.state == HubConnectionState.disconnected) {
+        await _myHub.start();
+        if (_myHub.state != HubConnectionState.connected) return;
+        if (onConnectedCallback != null) {
+          onConnectedCallback!.call(_myHub.connectionId);
+        }
+      } else if (_myHub.state == HubConnectionState.connected) {
+        if (_myConnectTask != null) {
+          await _myConnectTask!.cancel();
+          _mySchedule.close();
+        }
+      }
+    } on Exception catch (e) {
+      debugPrint('_goConnectHub: ${e.toString()}');
+    }
+  }
+
+  Future<void> initConnection(
+      {void Function(List<dynamic>?)? onlineMessageFunc,
+      void Function(List<dynamic>?)? signedMessageFunc}) {
+    _hubCon = HubConnectionBuilder()
+        .withUrl('${ApiCoreService.M_HOST_URL}/bividhub', _httpOption)
+        // .withAutomaticReconnect(retryOption)
+        .build();
+
+    _hubCon!.serverTimeoutInMilliseconds = 10000 * 30;
+    _hubCon!.keepAliveIntervalInMilliseconds = 10000 * 15;
+
+    _hubCon!.onclose((exception) {
+      debugPrint('HubConnection closed!');
+      if (onCloseCallback != null) {
+        onCloseCallback!.call(exception);
+      }
+      // _hubCon!.start();
+      // _initMySchedule();
+    });
+
+    _hubCon!.onreconnected((connectionId) {
+      if (onConnectedCallback != null) {
+        onConnectedCallback!.call(connectionId);
+      }
+    });
+
+    _hubCon!.onreconnecting((exception) {
+      if (onConnectingCallback != null) {
+        onConnectingCallback!.call(exception);
+      }
+    });
+
+    if (onlineMessageFunc != null) {
+      connection!.on(messageOnlineName, onlineMessageFunc);
+    }
+
+    if (signedMessageFunc != null) {
+      connection!.on(signedMessageName, signedMessageFunc);
+    }
+
+    return Future.value();
+  }
+
+  void addListen(String handlerName, void Function(List<dynamic>?) onHandler) {
+    connection!.on(handlerName, onHandler);
+  }
+
+  void removdeListen(String handlerName) {
+    connection!.off(handlerName);
+  }
+
+  void stop() async {
+    try {
+      await connection!.stop();
+    } catch (ex) {
+      debugPrint('$ex');
+    }
+  }
+
+  void start() async {
+    try {
+      //connection!.serverTimeoutInMilliseconds = 1000 * 5;
+      if (ApiCoreService.loginJwtToken != "") {
+        await connection!.start();
+      }
+      // _initMySchedule();
+    } catch (ex) {
+      debugPrint('$ex');
+    }
+  }
+
+  Future<void> sendMessageOnline(String userName, String fullName) async {
+    if (connection == null) {
+      throw Exception('Kết nối chưa được khởi tạo.');
+    }
+
+    if (connection!.state == HubConnectionState.connected) {
+      await connection!
+          .invoke(_sendOnlineMessageMethod, args: [userName, fullName]);
+    }
+  }
+}

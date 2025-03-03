@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>Phien Ban 2.0</title>
+    <item>
+        <title>Version 2.0</title>
+        <description>Tính năng mới: Tính năng 1 Tính năng 2 </br></description>
+        <pubDate>Sat, 26 Jul 2014 15:20:11 +0000</pubDate>
+        <enclosure url="https://portal.bividvietnam.com:63231/app/bividpharma_ver_1_3_03_Ver005.apk" sparkle:version="2.0" />
+        <sparkle:tags> <sparkle:criticalUpdate /> </sparkle:tags> 
+    </item>
+   </channel>
+</rss>

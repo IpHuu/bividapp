@@ -1,0 +1,304 @@
+import 'dart:convert';
+
+import 'package:collection/collection.dart';
+
+class GiayXinPhep {
+  int? idGiayXinPhep;
+  String? maCongTy;
+  String? logoCongTy;
+  String? boPhanNhanVien;
+  String? loaiPhieu;
+  DateTime? ngayLamDon;
+  String? guiNguoi;
+  String? nguoiLamDon;
+  int? hinhThucNghi;
+  String? hinhThucKhac;
+  String? lyDo;
+  DateTime? tuNgay;
+  DateTime? denNgay;
+  int? tongThoiGian;
+  String? nguoiNhanBanGiao;
+  String? barcode;
+  String? nguoiTao;
+  DateTime? ngayTao;
+  String? nguoiSua;
+  DateTime? ngaySua;
+  String? listNhanBg;
+  String? ndNhanBg;
+  String? listTruongBp;
+  String? ndTruongBp;
+  String? listDaiDienCTy;
+  String? ndDaiDienCTy;
+  String? listTgd;
+  String? ndtgd;
+  String? soPhieuAuto;
+  String? tenCty2;
+  int? idCamKetUngPhep;
+  String? tenNguoiLamDon;
+  String? tenNguoiNhanBanGiao;
+  int? tinhTrang;
+  String? tinhTrangChu;
+
+  GiayXinPhep({
+    this.idGiayXinPhep,
+    this.maCongTy,
+    this.logoCongTy,
+    this.boPhanNhanVien,
+    this.loaiPhieu,
+    this.ngayLamDon,
+    this.guiNguoi,
+    this.nguoiLamDon,
+    this.hinhThucNghi,
+    this.hinhThucKhac,
+    this.lyDo,
+    this.tuNgay,
+    this.denNgay,
+    this.tongThoiGian,
+    this.nguoiNhanBanGiao,
+    this.barcode,
+    this.nguoiTao,
+    this.ngayTao,
+    this.nguoiSua,
+    this.ngaySua,
+    this.listNhanBg,
+    this.ndNhanBg,
+    this.listTruongBp,
+    this.ndTruongBp,
+    this.listDaiDienCTy,
+    this.ndDaiDienCTy,
+    this.listTgd,
+    this.ndtgd,
+    this.soPhieuAuto,
+    this.tenCty2,
+    this.idCamKetUngPhep,
+    this.tenNguoiLamDon,
+    this.tenNguoiNhanBanGiao,
+    this.tinhTrang,
+    this.tinhTrangChu,
+  });
+
+  @override
+  String toString() {
+    return 'GiayXinPhep(idGiayXinPhep: $idGiayXinPhep, maCongTy: $maCongTy, logoCongTy: $logoCongTy, boPhanNhanVien: $boPhanNhanVien, loaiPhieu: $loaiPhieu, ngayLamDon: $ngayLamDon, guiNguoi: $guiNguoi, nguoiLamDon: $nguoiLamDon, hinhThucNghi: $hinhThucNghi, hinhThucKhac: $hinhThucKhac, lyDo: $lyDo, tuNgay: $tuNgay, denNgay: $denNgay, tongThoiGian: $tongThoiGian, nguoiNhanBanGiao: $nguoiNhanBanGiao, barcode: $barcode, nguoiTao: $nguoiTao, ngayTao: $ngayTao, nguoiSua: $nguoiSua, ngaySua: $ngaySua, listNhanBg: $listNhanBg, ndNhanBg: $ndNhanBg, listTruongBp: $listTruongBp, ndTruongBp: $ndTruongBp, listDaiDienCTy: $listDaiDienCTy, ndDaiDienCTy: $ndDaiDienCTy, listTgd: $listTgd, ndtgd: $ndtgd, soPhieuAuto: $soPhieuAuto, tenCty2: $tenCty2, idCamKetUngPhep: $idCamKetUngPhep, tenNguoiLamDon: $tenNguoiLamDon, tenNguoiNhanBanGiao: $tenNguoiNhanBanGiao, tinhTrang: $tinhTrang, tinhTrangChu: $tinhTrangChu)';
+  }
+
+  factory GiayXinPhep.fromMap(Map<String, dynamic> data) => GiayXinPhep(
+        idGiayXinPhep: data['idGiayXinPhep'] as int?,
+        maCongTy: data['maCongTy'] as String?,
+        logoCongTy: data['logoCongTy'] as String?,
+        boPhanNhanVien: data['boPhanNhanVien'] as String?,
+        loaiPhieu: data['loaiPhieu'] as String?,
+        ngayLamDon: data['ngayLamDon'] == null
+            ? null
+            : DateTime.parse(data['ngayLamDon'] as String),
+        guiNguoi: data['guiNguoi'] as String?,
+        nguoiLamDon: data['nguoiLamDon'] as String?,
+        hinhThucNghi: data['hinhThucNghi'] as int?,
+        hinhThucKhac: data['hinhThucKhac'] as String?,
+        lyDo: data['lyDo'] as String?,
+        tuNgay: data['tuNgay'] == null
+            ? null
+            : DateTime.parse(data['tuNgay'] as String),
+        denNgay: data['denNgay'] == null
+            ? null
+            : DateTime.parse(data['denNgay'] as String),
+        tongThoiGian: data['tongThoiGian'] as int?,
+        nguoiNhanBanGiao: data['nguoiNhanBanGiao'] as String?,
+        barcode: data['barcode'] as String?,
+        nguoiTao: data['nguoiTao'] as String?,
+        ngayTao: data['ngayTao'] == null
+            ? null
+            : DateTime.parse(data['ngayTao'] as String),
+        nguoiSua: data['nguoiSua'] as String?,
+        ngaySua: data['ngaySua'] == null
+            ? null
+            : DateTime.parse(data['ngaySua'] as String),
+        listNhanBg: data['listNhanBG'] as String?,
+        ndNhanBg: data['ndNhanBG'] as String?,
+        listTruongBp: data['listTruongBP'] as String?,
+        ndTruongBp: data['ndTruongBP'] as String?,
+        listDaiDienCTy: data['listDaiDienCTy'] as String?,
+        ndDaiDienCTy: data['ndDaiDienCTy'] as String?,
+        listTgd: data['listTGD'] as String?,
+        ndtgd: data['ndtgd'] as String?,
+        soPhieuAuto: data['soPhieuAuto'] as String?,
+        tenCty2: data['ten_cty2'] as String?,
+        idCamKetUngPhep: data['idCamKetUngPhep'] as int?,
+        tenNguoiLamDon: data['tenNguoiLamDon'] as String?,
+        tenNguoiNhanBanGiao: data['tenNguoiNhanBanGiao'] as String?,
+        tinhTrang: data['tinhTrang'] as int?,
+        tinhTrangChu: data['tinhTrangChu'] as String?,
+      );
+
+  Map<String, dynamic> toMap() => {
+        'idGiayXinPhep': idGiayXinPhep,
+        'maCongTy': maCongTy,
+        'logoCongTy': logoCongTy,
+        'boPhanNhanVien': boPhanNhanVien,
+        'loaiPhieu': loaiPhieu,
+        'ngayLamDon': ngayLamDon?.toIso8601String(),
+        'guiNguoi': guiNguoi,
+        'nguoiLamDon': nguoiLamDon,
+        'hinhThucNghi': hinhThucNghi,
+        'hinhThucKhac': hinhThucKhac,
+        'lyDo': lyDo,
+        'tuNgay': tuNgay?.toIso8601String(),
+        'denNgay': denNgay?.toIso8601String(),
+        'tongThoiGian': tongThoiGian,
+        'nguoiNhanBanGiao': nguoiNhanBanGiao,
+        'barcode': barcode,
+        'nguoiTao': nguoiTao,
+        'ngayTao': ngayTao?.toIso8601String(),
+        'nguoiSua': nguoiSua,
+        'ngaySua': ngaySua?.toIso8601String(),
+        'listNhanBG': listNhanBg,
+        'ndNhanBG': ndNhanBg,
+        'listTruongBP': listTruongBp,
+        'ndTruongBP': ndTruongBp,
+        'listDaiDienCTy': listDaiDienCTy,
+        'ndDaiDienCTy': ndDaiDienCTy,
+        'listTGD': listTgd,
+        'ndtgd': ndtgd,
+        'soPhieuAuto': soPhieuAuto,
+        'ten_cty2': tenCty2,
+        'idCamKetUngPhep': idCamKetUngPhep,
+        'tenNguoiLamDon': tenNguoiLamDon,
+        'tenNguoiNhanBanGiao': tenNguoiNhanBanGiao,
+        'tinhTrang': tinhTrang,
+        'tinhTrangChu': tinhTrangChu,
+      };
+
+  /// `dart:convert`
+  ///
+  /// Parses the string and returns the resulting Json object as [GiayXinPhep].
+  factory GiayXinPhep.fromJson(String data) {
+    return GiayXinPhep.fromMap(json.decode(data) as Map<String, dynamic>);
+  }
+
+  /// `dart:convert`
+  ///
+  /// Converts [GiayXinPhep] to a JSON string.
+  String toJson() => json.encode(toMap());
+
+  GiayXinPhep copyWith({
+    int? idGiayXinPhep,
+    String? maCongTy,
+    String? logoCongTy,
+    String? boPhanNhanVien,
+    String? loaiPhieu,
+    DateTime? ngayLamDon,
+    String? guiNguoi,
+    String? nguoiLamDon,
+    int? hinhThucNghi,
+    String? hinhThucKhac,
+    String? lyDo,
+    DateTime? tuNgay,
+    DateTime? denNgay,
+    int? tongThoiGian,
+    String? nguoiNhanBanGiao,
+    String? barcode,
+    String? nguoiTao,
+    DateTime? ngayTao,
+    String? nguoiSua,
+    DateTime? ngaySua,
+    String? listNhanBg,
+    String? ndNhanBg,
+    String? listTruongBp,
+    String? ndTruongBp,
+    String? listDaiDienCTy,
+    String? ndDaiDienCTy,
+    String? listTgd,
+    String? ndtgd,
+    String? soPhieuAuto,
+    String? tenCty2,
+    int? idCamKetUngPhep,
+    String? tenNguoiLamDon,
+    String? tenNguoiNhanBanGiao,
+    int? tinhTrang,
+    String? tinhTrangChu,
+  }) {
+    return GiayXinPhep(
+      idGiayXinPhep: idGiayXinPhep ?? this.idGiayXinPhep,
+      maCongTy: maCongTy ?? this.maCongTy,
+      logoCongTy: logoCongTy ?? this.logoCongTy,
+      boPhanNhanVien: boPhanNhanVien ?? this.boPhanNhanVien,
+      loaiPhieu: loaiPhieu ?? this.loaiPhieu,
+      ngayLamDon: ngayLamDon ?? this.ngayLamDon,
+      guiNguoi: guiNguoi ?? this.guiNguoi,
+      nguoiLamDon: nguoiLamDon ?? this.nguoiLamDon,
+      hinhThucNghi: hinhThucNghi ?? this.hinhThucNghi,
+      hinhThucKhac: hinhThucKhac ?? this.hinhThucKhac,
+      lyDo: lyDo ?? this.lyDo,
+      tuNgay: tuNgay ?? this.tuNgay,
+      denNgay: denNgay ?? this.denNgay,
+      tongThoiGian: tongThoiGian ?? this.tongThoiGian,
+      nguoiNhanBanGiao: nguoiNhanBanGiao ?? this.nguoiNhanBanGiao,
+      barcode: barcode ?? this.barcode,
+      nguoiTao: nguoiTao ?? this.nguoiTao,
+      ngayTao: ngayTao ?? this.ngayTao,
+      nguoiSua: nguoiSua ?? this.nguoiSua,
+      ngaySua: ngaySua ?? this.ngaySua,
+      listNhanBg: listNhanBg ?? this.listNhanBg,
+      ndNhanBg: ndNhanBg ?? this.ndNhanBg,
+      listTruongBp: listTruongBp ?? this.listTruongBp,
+      ndTruongBp: ndTruongBp ?? this.ndTruongBp,
+      listDaiDienCTy: listDaiDienCTy ?? this.listDaiDienCTy,
+      ndDaiDienCTy: ndDaiDienCTy ?? this.ndDaiDienCTy,
+      listTgd: listTgd ?? this.listTgd,
+      ndtgd: ndtgd ?? this.ndtgd,
+      soPhieuAuto: soPhieuAuto ?? this.soPhieuAuto,
+      tenCty2: tenCty2 ?? this.tenCty2,
+      idCamKetUngPhep: idCamKetUngPhep ?? this.idCamKetUngPhep,
+      tenNguoiLamDon: tenNguoiLamDon ?? this.tenNguoiLamDon,
+      tenNguoiNhanBanGiao: tenNguoiNhanBanGiao ?? this.tenNguoiNhanBanGiao,
+      tinhTrang: tinhTrang ?? this.tinhTrang,
+      tinhTrangChu: tinhTrangChu ?? this.tinhTrangChu,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    if (other is! GiayXinPhep) return false;
+    final mapEquals = const DeepCollectionEquality().equals;
+    return mapEquals(other.toMap(), toMap());
+  }
+
+  @override
+  int get hashCode =>
+      idGiayXinPhep.hashCode ^
+      maCongTy.hashCode ^
+      logoCongTy.hashCode ^
+      boPhanNhanVien.hashCode ^
+      loaiPhieu.hashCode ^
+      ngayLamDon.hashCode ^
+      guiNguoi.hashCode ^
+      nguoiLamDon.hashCode ^
+      hinhThucNghi.hashCode ^
+      hinhThucKhac.hashCode ^
+      lyDo.hashCode ^
+      tuNgay.hashCode ^
+      denNgay.hashCode ^
+      tongThoiGian.hashCode ^
+      nguoiNhanBanGiao.hashCode ^
+      barcode.hashCode ^
+      nguoiTao.hashCode ^
+      ngayTao.hashCode ^
+      nguoiSua.hashCode ^
+      ngaySua.hashCode ^
+      listNhanBg.hashCode ^
+      ndNhanBg.hashCode ^
+      listTruongBp.hashCode ^
+      ndTruongBp.hashCode ^
+      listDaiDienCTy.hashCode ^
+      ndDaiDienCTy.hashCode ^
+      listTgd.hashCode ^
+      ndtgd.hashCode ^
+      soPhieuAuto.hashCode ^
+      tenCty2.hashCode ^
+      idCamKetUngPhep.hashCode ^
+      tenNguoiLamDon.hashCode ^
+      tenNguoiNhanBanGiao.hashCode ^
+      tinhTrang.hashCode ^
+      tinhTrangChu.hashCode;
+}

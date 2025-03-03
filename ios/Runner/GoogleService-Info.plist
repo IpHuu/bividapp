@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>835619346021-b1uh0u9fbtukiagfqe6gv2e5l1uutp0j.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.835619346021-b1uh0u9fbtukiagfqe6gv2e5l1uutp0j</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBbPGOzW0FH2h_NlbOyR2yyQPsoC_ZPtVE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>835619346021</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.bividapp</string>
+	<key>PROJECT_ID</key>
+	<string>bivid-pharma-mobile</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bivid-pharma-mobile.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:835619346021:ios:59766e3f96a4c6973d588c</string>
+</dict>
+</plist>

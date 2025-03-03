@@ -1,0 +1,65 @@
+
+Bivid Pharma Portal
+
+Bivid Pharma Portal - Kết nối thông tin nội bộ
+
+Phần mềm kết nối thông tin nội bộ BIVID
+Tính năng nổi bật
+-Duyệt hồ sơ trực tuyến
+-Tra cứu hồ sơ nhanh chóng
+-Theo dõi quy trình ký duyệt trực quan
+-Nhận thông báo tức thời từ hệ thống
+
+BIVID Internet App 
+New features
+-Browse profiles online
+-Look up records quickly
+-Follow the visual approval process
+-Receive instant notifications from the system
+
+BIVID CO., LTD
+Chất lượng luôn là hàng đầu
+Tất cả vì sức khỏe của cộng đồng
+
+
+Features Picture
+Chất lượng hàng đầu
+Tất cả vì sức khỏe cộng đồng
+
+Sứ mệnh
+Đảm bảo cung cấp sản phẩm chất lượng, hiệu quả với phương châm "Tất cả vì sức khỏe cộng đồng"
+
+Tầm nhìn
+Trở thành nhà cung cấp chuyên nghiệp ở Việt name
+Trở thành một trong những nhà nhập khẩu và phân phối hàng đầu tại Việt name
+
+Giá trị cốt lõi
+Chất lượng:
+    Cung cấp sản phẩm đảm bảo an toàn và chất lượng
+Cam kết:
+    Đáp ứng đầy đủ các thỏa thuận với khách hàng
+Nhân lực:
+    Đào tạo nguồn nhân lực tài năng và tâm huyết
+
+------------------------
+Screen Text
+    Page 1:
+        Sản phẩm chất lượng
+        Tất cả vì sức khỏe cộng đồng
+
+    Page 2:
+        Tra cứu hồ sơ nhanh chóng
+        Theo dõi quy trình ký duyệt trực quan
+
+    Page 3:
+        Nhận thông báo tức thời từ hệ thống
+
+    Page 4:
+        Kết nối mọi lúc mọi nơi
+
+    Page 5:
+        Kết nối 
+            theo thời gian thực
+
+Primary Color:
+    #0f691e

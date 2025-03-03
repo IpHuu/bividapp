@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "835619346021",
+    "project_id": "bivid-pharma-mobile",
+    "storage_bucket": "bivid-pharma-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835619346021:android:2cf4871cd8afa0463d588c",
+        "android_client_info": {
+          "package_name": "com.bividvietnam.bividpharma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835619346021-lfk99o9l30nksdeda5o4bb373ue69bbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB30L1LAEGLmkHL1xIYT9VjCOswAo0pR2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835619346021-lfk99o9l30nksdeda5o4bb373ue69bbg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "835619346021-b1uh0u9fbtukiagfqe6gv2e5l1uutp0j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bividapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

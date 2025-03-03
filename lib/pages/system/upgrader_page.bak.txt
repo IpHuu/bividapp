@@ -1,0 +1,126 @@
+import 'package:bividpharma/services/api_service.dart';
+import 'package:bividpharma/ui/my_navigation.dart';
+import 'package:bividpharma/ui/ui_helper.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:ota_update/ota_update.dart';
+
+/// example widget for ota_update plugin
+class UpgraderPage extends StatefulWidget {
+  const UpgraderPage({Key? key}) : super(key: key);
+
+  @override
+  State<UpgraderPage> createState() => _UpgraderPageState();
+}
+
+class _UpgraderPageState extends State<UpgraderPage> {
+  late OtaEvent? currentEvent;
+
+  @override
+  void initState() {
+    currentEvent = null;
+    super.initState();
+  }
+
+  Future<void> _tryOtaUpdate() async {
+    try {
+      final apkFileName = ModalRoute.of(context)!.settings.arguments as String;
+      final String apkFileUrl = '${ApiCoreService.appVersionURL}/$apkFileName';
+      OtaUpdate()
+          .execute(
+        apkFileUrl,
+        destinationFilename: 'bivid_pharma_update.apk',
+      )
+          .listen(
+        (OtaEvent event) {
+          setState(() => currentEvent = event);
+        },
+      );
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
+      // ignore: avoid_print
+      print('Không thể cập nhật phiên bản mới. Thông tin: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      foregroundColor: UIHelper.BIVID_WHITE_BACKGROUND_COLOR,
+      backgroundColor: Theme.of(context).primaryColor,
+      minimumSize: const Size(120, 36),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+    );
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          leading: BackButton(
+              color: Colors.white,
+              onPressed: () {
+                MyNavigation.back();
+              }),
+          elevation: 1,
+          title: const Text('Cập nhật phiên bản mới'),
+          backgroundColor: Theme.of(context).primaryColor,
+          iconTheme: const IconThemeData(color: Colors.white),
+          centerTitle: true,
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(
+              flex: 1,
+            ),
+            currentEvent == null
+                ? const Text('')
+                : Text(
+                    'Đang tải : ${currentEvent!.status} : ${currentEvent!.value} \n'),
+            SizedBox(
+              width: 220,
+              height: 320,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(
+                  "assets/undraw_os_upgrade_re_r0qa.svg",
+                  matchTextDirection: true,
+                  color: Colors.transparent,
+                  colorBlendMode: BlendMode.color,
+                ),
+              ),
+            ),
+            Center(
+              child: SizedBox(
+                width: 120,
+                child: ElevatedButton(
+                  style: raisedButtonStyle,
+                  onPressed: () async {
+                    _tryOtaUpdate();
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.download,
+                        color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR,
+                      ),
+                      Text(
+                        "Cập nhật",
+                        style:
+                            TextStyle(color: UIHelper.BIVID_WHITE_TEXT_COLOR),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const Spacer(
+              flex: 2,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

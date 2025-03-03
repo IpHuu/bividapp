@@ -1,0 +1,101 @@
+import 'dart:typed_data';
+
+import 'package:bividpharma/ui/ui_helper.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+class LocalNotify {
+  final FlutterLocalNotificationsPlugin _localNotify =
+      FlutterLocalNotificationsPlugin();
+  final InitializationSettings _initializationSettings =
+      const InitializationSettings(
+          android: AndroidInitializationSettings('app_icon'));
+
+  LocalNotify();
+
+  Future<void> showNotification(
+      {String? title, required String bodyText}) async {
+    final Int64List vibrationPattern = Int64List(4);
+    vibrationPattern[0] = 0;
+    vibrationPattern[1] = 1000;
+    vibrationPattern[2] = 5000;
+    vibrationPattern[3] = 2000;
+
+    AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails('bivid.pharma.notify', 'Bivid Pharma Notify',
+            channelDescription: 'Thông báo từ BIVID Pharma',
+            icon: 'app_small_icon',
+            largeIcon: const DrawableResourceAndroidBitmap('app_icon'),
+            importance: Importance.max,
+            priority: Priority.high,
+            ticker: 'bivid_ticker',
+            vibrationPattern: vibrationPattern,
+            enableLights: true,
+            color: UIHelper.BIVID_PRIMARY_COLOR,
+            ledColor: const Color.fromARGB(255, 255, 0, 0),
+            ledOnMs: 1000,
+            ledOffMs: 500,
+            visibility: NotificationVisibility.public);
+    NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await _localNotify.show(
+        0, title ?? 'Thông báo', bodyText, platformChannelSpecifics,
+        payload: '');
+  }
+
+  Future<void> initLocalNotify() async {
+    _localNotify
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+
+    _localNotify
+        .resolvePlatformSpecificImplementation<
+            MacOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+
+    await _localNotify.initialize(_initializationSettings,
+        onSelectNotification: (String? payload) async {
+      if (payload != null) {
+        debugPrint('notification payload: $payload');
+      }
+      //selectedNotificationPayload = payload;
+      //selectNotificationSubject.add(payload);
+    });
+  }
+  void _onDidReceiveLocalNotification(
+    int id, String title, String body, String payload) async {
+  // display a dialog with the notification details, tap ok to go to another page
+  showDialog(
+    context: context,
+    builder: (BuildContext context) => CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(body),
+      actions: [
+        CupertinoDialogAction(
+          isDefaultAction: true,
+          child: Text('Ok'),
+          onPressed: () async {
+            Navigator.of(context, rootNavigator: true).pop();
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SecondScreen(payload),
+              ),
+            );
+          },
+        )
+      ],
+    ),
+  );
+}
+}
