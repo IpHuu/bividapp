@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           child,
@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               '',
               style: TextStyle(color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR),
             ),
-            badgeStyle: badges.BadgeStyle(
+            badgeStyle: const badges.BadgeStyle(
               badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
             ),
             position: badges.BadgePosition.topStart(),
@@ -234,7 +234,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       children: <Widget>[
         badges.Badge(
             showBadge: false,
-            badgeStyle: badges.BadgeStyle(
+            badgeStyle: const badges.BadgeStyle(
               badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
             ),
             badgeContent: const Padding(
@@ -256,7 +256,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 icon: Icons.assignment)),
         badges.Badge(
             showBadge: false,
-            badgeStyle: badges.BadgeStyle(
+            badgeStyle: const badges.BadgeStyle(
               badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
             ),
             position: badges.BadgePosition.topStart(),
@@ -296,7 +296,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       children: <Widget>[
         badges.Badge(
             showBadge: true,
-            badgeStyle: badges.BadgeStyle(
+            badgeStyle: const badges.BadgeStyle(
+              badgeColor: Colors.red,
+            ),
+            position: badges.BadgePosition.topEnd(top: 5, end: 40),
+            badgeContent: const Padding(
+              padding: EdgeInsets.all(0.0),
+              child: Text(
+                '1',
+                style: TextStyle(
+                    fontSize: 8, color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR),
+              ),
+            ),
+            child: FuntionItemWidget(
+                onPressed: () {
+                  MyNavigation.intentWithData(
+                    ScreenRouteName.ordersView,
+                  );
+                },
+                text: "Đơn hàng",
+                icon: Icons.shopping_bag)),
+        badges.Badge(
+            showBadge: true,
+            badgeStyle: const badges.BadgeStyle(
               badgeColor: Colors.red,
             ),
             position: badges.BadgePosition.topEnd(top: 5, end: 40),
@@ -318,7 +340,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 icon: Icons.shopping_bag)),
         badges.Badge(
           showBadge: false,
-          badgeStyle: badges.BadgeStyle(
+          badgeStyle: const badges.BadgeStyle(
             badgeColor: Colors.red,
           ),
           position: badges.BadgePosition.topEnd(top: 5, end: 30),
@@ -341,7 +363,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         badges.Badge(
           showBadge: false,
-          badgeStyle: badges.BadgeStyle(
+          badgeStyle: const badges.BadgeStyle(
             badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
           ),
           position: badges.BadgePosition.topStart(),
@@ -364,7 +386,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         badges.Badge(
           showBadge: false,
-          badgeStyle: badges.BadgeStyle(
+          badgeStyle: const badges.BadgeStyle(
             badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
           ),
           position: badges.BadgePosition.topStart(),

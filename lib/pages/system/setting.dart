@@ -78,7 +78,7 @@ class _SettingPageState extends State<SettingPage> {
           "Thiết lập",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
       ),

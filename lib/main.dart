@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:bividpharma/common/dialog/dialog_viewmodel.dart';
 import 'package:bividpharma/pages/Auth/view_model/login_viewmodel.dart';
+import 'package:bividpharma/pages/banhang/listproduct/view_model/product_list_vm.dart';
+import 'package:bividpharma/pages/banhang/orders/view_model/create_order_provider.dart';
 import 'package:bividpharma/utils/local_share_preference.dart';
 import 'package:http/http.dart' as http;
 import 'package:bividpharma/common/my_device_info.dart';
@@ -122,6 +124,13 @@ Future<void> main() async {
           create: (_) => TuyenDungPageModel()),
       ChangeNotifierProvider<ThemeNotifier>(
           create: (_) => ThemeNotifier(UIHelper.defaultTheme)),
+      ChangeNotifierProvider(create: (context) => CreateOrderProvider()),
+      // ChangeNotifierProvider(create: (context) => ProductListVm()),
+      // ChangeNotifierProxyProvider<ProductListVm, CreateOrderProvider>(
+      //   create: (context) => CreateOrderProvider(context.read<ProductListVm>()),
+      //   update: (context, productVm, previous) =>
+      //       previous ?? CreateOrderProvider(productVm),
+      // ),
     ],
     builder: (con, child) {
       bividApp = const BividApp();

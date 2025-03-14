@@ -53,12 +53,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 "Hồ sơ của tôi",
                 style: TextStyle(color: Colors.white),
               ),
-              backgroundColor: Colors.blue,
+              backgroundColor: Theme.of(context).primaryColor,
               centerTitle: true,
               iconTheme: const IconThemeData(color: Colors.white),
               actions: [
                 IconButton(
-                  icon: Icon(Icons.settings),
+                  icon: const Icon(Icons.settings),
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => const SettingPage()),

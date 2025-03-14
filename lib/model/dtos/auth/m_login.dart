@@ -6,6 +6,7 @@ part 'm_login.g.dart';
 @freezed
 class MLogin with _$MLogin {
   factory MLogin({
+    @Default("") String email,
     @Default("") String userName,
     @Default("") String fullName,
     @Default("") String password,

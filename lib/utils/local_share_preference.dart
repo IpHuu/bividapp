@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:bividpharma/model/dtos/auth/m_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/dtos/base/auth_response.dart';
@@ -39,9 +40,16 @@ class SharedPreferencesManager {
 
   set saveIsLogin(bool value) =>
       _prefs.setBool(SharePreferenceKeys.isLogin.name, value);
+
+  //--------Token----------
+  String get accessToken =>
+      _prefs.getString(SharePreferenceKeys.authToken.name) ?? '';
+  set saveAccessToken(String value) =>
+      _prefs.setString(SharePreferenceKeys.authToken.name, value);
+
   // #SaveUser
   // Lưu thông tin Result vào SharedPreferences
-  Future<void> saveUserInfo(Result result) async {
+  Future<void> saveUserInfo(MUser result) async {
     String jsonString = jsonEncode(result.toJson());
     await _prefs.setString(SharePreferenceKeys.userInfo.name, jsonString);
   }

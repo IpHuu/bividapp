@@ -1,4 +1,6 @@
+import 'package:bividpharma/model/dtos/auth/m_user.dart';
 import 'package:bividpharma/model/dtos/base/auth_response.dart';
+import 'package:bividpharma/model/dtos/base/login_response.dart';
 import 'package:bividpharma/model/dtos/setting_app/setting_app.dart';
 import 'package:bividpharma/services/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
@@ -101,37 +103,45 @@ class LoginViewModel with ChangeNotifier {
   Future<bool> login() async {
     String username = emailController.text;
     String password = passController.text;
-    _loginLoading = true;
-    _errorMessage = null;
-    notifyListeners();
 
     if (username.isEmpty || password.isEmpty) {
-      _loginLoading = false;
       _errorMessage = "Vui lòng nhập thông tin đăng nhập đầy đủ";
       notifyListeners();
       return false;
     }
-
-    AuthResponse? authResponse = await AuthProvider.login(username, password);
-    if (authResponse != null &&
-        authResponse.result != null &&
-        authResponse.result!.tokenId.isNotEmpty) {
+    _loginLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+    final response = await AuthProvider.login(username, password);
+    bool loginSuccess = false;
+    response.fold((error) {
       _loginLoading = false;
+      _errorMessage = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin";
       notifyListeners();
+    }, (result) {
+      LoginResponse? authResponse = result;
+      if (authResponse.accessToken != null &&
+          authResponse.accessToken!.isNotEmpty) {
+        _loginLoading = false;
+        notifyListeners();
 
-      Result? user = authResponse.result;
-      if (user != null) {
-        SharedPreferencesManager.instance.saveUserInfo(user);
+        SharedPreferencesManager.instance.saveAccessToken =
+            authResponse.accessToken!;
+        MUser? user = authResponse.user;
+        if (user != null) {
+          SharedPreferencesManager.instance.saveUserInfo(user);
+          SharedPreferencesManager.instance.saveIsLogin = true;
+        }
+
+        handleRememberLogin(username);
+        loginSuccess = true;
+      } else {
+        _loginLoading = false;
+        _errorMessage = "Đăng nhập thất bại";
+        notifyListeners();
       }
-      SharedPreferencesManager.instance.saveIsLogin = true;
-      handleRememberLogin(username);
-      return true;
-    } else {
-      _loginLoading = false;
-      _errorMessage = "Đăng nhập thất bại";
-      notifyListeners();
-      return false;
-    }
+    });
+    return loginSuccess;
   }
 
   void handleRememberLogin(String username) {

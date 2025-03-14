@@ -81,7 +81,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             ]),
             MenuModel(title: "Lịch họp")
           ]),
-      MenuModel(
+      const MenuModel(
           title: "Biểu mẫu trình ký",
           icon: Icons.edit,
           isRoot: true,
@@ -89,7 +89,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
             MenuModel(title: "Văn bản nội bộ"),
             MenuModel(title: "Kế hoạch công việc")
           ]),
-      MenuModel(
+      const MenuModel(
           title: "Mục tiêu kế hoạch - KPI",
           icon: Icons.task,
           isRoot: true,
@@ -105,7 +105,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
       appBar: AppBar(
         backgroundColor: UIHelper.BIVID_PRIMARY_COLOR,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: Align(
           alignment: Alignment.center,
           child: Image.asset(
@@ -117,19 +117,19 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               // Xử lý khi bấm vào icon
             },
           ),
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               // Xử lý khi bấm vào icon
             },
           ),
           IconButton(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const ProfilePage()),
@@ -138,7 +138,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           ),
         ],
       ),
-      body: HomePage(),
+      body: const HomePage(),
       //bottomNavigationBar: const Text("bottomNavigationBar"),
     );
   }
@@ -171,14 +171,14 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           child: Theme(
             data: Theme.of(context).copyWith(
               dividerColor: Colors.transparent, // Ẩn dòng gạch dưới khi mở
-              expansionTileTheme: ExpansionTileThemeData(
+              expansionTileTheme: const ExpansionTileThemeData(
                 iconColor: Colors.blue, // Màu icon mũi tên
               ),
             ),
             child: ExpansionTile(
               title: Text(
                 menu.title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.blue, // Active màu xanh
                   fontWeight: FontWeight.normal,
                 ),
@@ -274,7 +274,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                 children: [
                   ExpansionTile(
                     title: Text("Riêng Tư", style: itemMenuStyle),
-                    leading: Icon(Icons.person),
+                    leading: const Icon(Icons.person),
                     children: [
                       ListTile(
                         title: Text('Hồ sơ của tôi', style: itemMenuStyle),
@@ -301,8 +301,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                     ],
                   ),
                   ExpansionTile(
-                    title: Text("Biểu mẫu trình ký"),
-                    leading: Icon(Icons.edit),
+                    title: const Text("Biểu mẫu trình ký"),
+                    leading: const Icon(Icons.edit),
                     children: [
                       ListTile(
                         title: Text('Điều khoản sử dụng', style: itemMenuStyle),

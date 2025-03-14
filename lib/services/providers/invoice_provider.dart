@@ -1,0 +1,3 @@
+class InvoiceProvider {
+  InvoiceProvider._();
+}

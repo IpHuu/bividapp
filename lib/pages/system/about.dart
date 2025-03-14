@@ -29,7 +29,7 @@ class _AboutePageState extends State<AboutePage> {
     //   _isLogined = SharedPreferencesManager.instance.isLogin;
     // });
     setState(() {
-      _isLogined = model.logined;
+      _isLogined = SharedPreferencesManager.instance.isLogin;
     });
   }
 
@@ -40,9 +40,9 @@ class _AboutePageState extends State<AboutePage> {
 
   Future<void> _onIntroEnd() async {
     final model = context.read<MainPageModel>();
-
-    if (model.logined) {
-      Navigator.pop(context);
+    if (_isLogined) {
+      // Navigator.pop(context);
+      MyNavigation.intentWithDataReplaced(ScreenRouteName.mainPage);
     } else {
       model.showWelcomePage = false;
       MyNavigation.intentWithDataReplaced(ScreenRouteName.loginPage);

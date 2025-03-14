@@ -40,7 +40,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
         children: <Widget>[
           Container(
             padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
-            child: Align(
+            child: const Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 'Hành chính',
@@ -55,7 +55,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
           _buildHanhChinhGrid(context),
           Container(
             padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
-            child: Align(
+            child: const Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 'Thanh quyết toán',
@@ -67,13 +67,13 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           _buildThanhQuyetToanGrid(context),
           Container(
             padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
-            child: Align(
+            child: const Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(
                 'Kế hoạch công việc & công tác',
@@ -118,7 +118,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
             '',
             style: TextStyle(color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR),
           ),
-          badgeStyle: badges.BadgeStyle(
+          badgeStyle: const badges.BadgeStyle(
             badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
           ),
           position: badges.BadgePosition.topStart(),
@@ -148,7 +148,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
           style: TextStyle(
               fontSize: 9, color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR),
         ),
-        badgeStyle: badges.BadgeStyle(
+        badgeStyle: const badges.BadgeStyle(
           badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
         ),
         position: badges.BadgePosition.topStart(),
@@ -168,7 +168,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
           style: TextStyle(
               fontSize: 9, color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR),
         ),
-        badgeStyle: badges.BadgeStyle(
+        badgeStyle: const badges.BadgeStyle(
           badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
         ),
         position: badges.BadgePosition.topStart(),
@@ -187,7 +187,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
           'Dev',
           style: TextStyle(fontSize: 9, color: Color.fromARGB(255, 121, 5, 5)),
         ),
-        badgeStyle: badges.BadgeStyle(
+        badgeStyle: const badges.BadgeStyle(
           badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
         ),
         position: badges.BadgePosition.topStart(),
@@ -287,7 +287,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
     ));
     listWidgets.add(badges.Badge(
       showBadge: false,
-      badgeStyle: badges.BadgeStyle(
+      badgeStyle: const badges.BadgeStyle(
         badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
       ),
       position: badges.BadgePosition.topStart(),
@@ -302,7 +302,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
     ));
     listWidgets.add(badges.Badge(
       showBadge: false,
-      badgeStyle: badges.BadgeStyle(
+      badgeStyle: const badges.BadgeStyle(
         badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
       ),
       position: badges.BadgePosition.topStart(),
@@ -322,7 +322,7 @@ class _TraCuuHoSoPageState extends State<TraCuuHoSoPage>
         style: TextStyle(
             fontSize: 9, color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR),
       ),
-      badgeStyle: badges.BadgeStyle(
+      badgeStyle: const badges.BadgeStyle(
         badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
       ),
       position: badges.BadgePosition.topStart(),

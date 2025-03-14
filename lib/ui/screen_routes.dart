@@ -1,4 +1,6 @@
 import 'package:bividpharma/pages/banhang/dathang/booking_order.dart';
+import 'package:bividpharma/pages/banhang/orders/view/create_order_page.dart';
+import 'package:bividpharma/pages/banhang/orders/view/orders_view.dart';
 import 'package:bividpharma/pages/giaytamung/giaytamung_detail_page.dart';
 import 'package:bividpharma/pages/giayxinphep/giaynghiphep_detail_page.dart';
 import 'package:bividpharma/pages/kehoachcongviec/kehoachcongviec_detail_page.dart';
@@ -46,6 +48,10 @@ import 'package:bividpharma/pages/system/tracuu_hoso_page.dart';
 // import 'package:bividpharma/pages/system/upgrader_page.dart.bak';
 import 'package:bividpharma/services/firebase/message_view.dart';
 import 'package:flutter/widgets.dart';
+
+import '../pages/banhang/khachhang/customer_page.dart';
+import '../pages/banhang/listproduct/view/product_list.dart';
+import '../pages/banhang/orders/view/create_order_view.dart';
 
 class ScreenRouteName {
   static const String mainPage = "main";
@@ -117,6 +123,10 @@ class ScreenRouteName {
   static const String traCuuDienThoaiPage = "tra_cuu_dien_thoai_page";
 
   static const String bookingOrderPage = "booking_order";
+  static const String ordersView = "order_view";
+  static const String createOrderView = "create_order_view";
+  static const String productListView = "product_list_view";
+  static const String customerListView = "customer_list_view";
 
   static Map<String, WidgetBuilder> get mainRouter {
     return {
@@ -205,7 +215,11 @@ class ScreenRouteName {
       // ScreenRouteName.documentFileAttachPage: (context) =>
       //     const DocumentFileAttachPage(),
 
-      ScreenRouteName.bookingOrderPage: (context) => const BookingOrder(),
+      ScreenRouteName.bookingOrderPage: (context) => const InvoicePage(),
+      ScreenRouteName.ordersView: (context) => const OrdersView(),
+      ScreenRouteName.createOrderView: (context) => const CreateOrderPage(),
+      ScreenRouteName.productListView: (context) => const ProductView(),
+      ScreenRouteName.customerListView: (context) => const CustomerView(),
     };
   }
 }

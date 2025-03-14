@@ -107,10 +107,10 @@ class _EmptyListWidgetState extends State<EmptyListWidget>
                             });
                           });
                         },
-                        child: Center(
+                        child: const Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.refresh,
                                 color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR,

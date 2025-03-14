@@ -26,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
+            const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
                 "",
                 textAlign: TextAlign.center,
@@ -159,9 +159,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             shape: const StadiumBorder(),
                           ),
                           onPressed: () {},
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.content_paste_rounded,
                                 color: Colors.white,

@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             fontWeight: FontWeight.bold,
           ),
           desc: viewModel.errorMessage,
-          descTextStyle: TextStyle(color: Colors.red, fontSize: 16),
+          descTextStyle: const TextStyle(color: Colors.red, fontSize: 16),
           btnOkColor: Theme.of(context).primaryColor,
           btnOkOnPress: () {
             viewModel.closeDialog();
@@ -206,8 +206,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Đăng nhập bằng vân tay hoặc khuôn mặt"),
-          SizedBox(
+          const Text("Đăng nhập bằng vân tay hoặc khuôn mặt"),
+          const SizedBox(
             height: 10,
           ),
           Center(

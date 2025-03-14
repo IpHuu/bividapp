@@ -8,6 +8,7 @@ part of 'm_login.dart';
 
 _$$MLoginImpl _$$$MLoginImplFromJson(Map<String, dynamic> json) =>
     _$$MLoginImpl(
+      email: json['email'] as String? ?? "",
       userName: json['userName'] as String? ?? "",
       fullName: json['fullName'] as String? ?? "",
       password: json['password'] as String? ?? "",
@@ -19,6 +20,7 @@ _$$MLoginImpl _$$$MLoginImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$$MLoginImplToJson(_$$MLoginImpl instance) =>
     <String, dynamic>{
+      'email': instance.email,
       'userName': instance.userName,
       'fullName': instance.fullName,
       'password': instance.password,

@@ -20,6 +20,7 @@ MLogin _$MLoginFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MLogin {
+  String get email => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
@@ -43,7 +44,8 @@ abstract class $MLoginCopyWith<$Res> {
       _$MLoginCopyWithImpl<$Res, MLogin>;
   @useResult
   $Res call(
-      {String userName,
+      {String email,
+      String userName,
       String fullName,
       String password,
       String deviceName,
@@ -67,6 +69,7 @@ class _$MLoginCopyWithImpl<$Res, $Val extends MLogin>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? email = null,
     Object? userName = null,
     Object? fullName = null,
     Object? password = null,
@@ -76,6 +79,10 @@ class _$MLoginCopyWithImpl<$Res, $Val extends MLogin>
     Object? publicIpv6 = null,
   }) {
     return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -116,7 +123,8 @@ abstract class _$$$MLoginImplCopyWith<$Res> implements $MLoginCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String userName,
+      {String email,
+      String userName,
       String fullName,
       String password,
       String deviceName,
@@ -138,6 +146,7 @@ class __$$$MLoginImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? email = null,
     Object? userName = null,
     Object? fullName = null,
     Object? password = null,
@@ -147,6 +156,10 @@ class __$$$MLoginImplCopyWithImpl<$Res>
     Object? publicIpv6 = null,
   }) {
     return _then(_$$MLoginImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -183,7 +196,8 @@ class __$$$MLoginImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$$MLoginImpl implements $MLogin {
   _$$MLoginImpl(
-      {this.userName = "",
+      {this.email = "",
+      this.userName = "",
       this.fullName = "",
       this.password = "",
       this.deviceName = "",
@@ -194,6 +208,9 @@ class _$$MLoginImpl implements $MLogin {
   factory _$$MLoginImpl.fromJson(Map<String, dynamic> json) =>
       _$$$MLoginImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final String email;
   @override
   @JsonKey()
   final String userName;
@@ -218,7 +235,7 @@ class _$$MLoginImpl implements $MLogin {
 
   @override
   String toString() {
-    return 'MLogin(userName: $userName, fullName: $fullName, password: $password, deviceName: $deviceName, deviceIpv4: $deviceIpv4, publicIpv4: $publicIpv4, publicIpv6: $publicIpv6)';
+    return 'MLogin(email: $email, userName: $userName, fullName: $fullName, password: $password, deviceName: $deviceName, deviceIpv4: $deviceIpv4, publicIpv4: $publicIpv4, publicIpv6: $publicIpv6)';
   }
 
   @override
@@ -226,6 +243,7 @@ class _$$MLoginImpl implements $MLogin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$$MLoginImpl &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.fullName, fullName) ||
@@ -244,8 +262,8 @@ class _$$MLoginImpl implements $MLogin {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userName, fullName, password,
-      deviceName, deviceIpv4, publicIpv4, publicIpv6);
+  int get hashCode => Object.hash(runtimeType, email, userName, fullName,
+      password, deviceName, deviceIpv4, publicIpv4, publicIpv6);
 
   /// Create a copy of MLogin
   /// with the given fields replaced by the non-null parameter values.
@@ -265,7 +283,8 @@ class _$$MLoginImpl implements $MLogin {
 
 abstract class $MLogin implements MLogin {
   factory $MLogin(
-      {final String userName,
+      {final String email,
+      final String userName,
       final String fullName,
       final String password,
       final String deviceName,
@@ -275,6 +294,8 @@ abstract class $MLogin implements MLogin {
 
   factory $MLogin.fromJson(Map<String, dynamic> json) = _$$MLoginImpl.fromJson;
 
+  @override
+  String get email;
   @override
   String get userName;
   @override

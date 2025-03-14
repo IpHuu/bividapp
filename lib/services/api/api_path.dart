@@ -3,10 +3,22 @@ import 'package:bividpharma/model/dtos/base/auth_response.dart';
 import 'package:bividpharma/utils/local_share_preference.dart';
 import 'package:dio/dio.dart';
 
-enum ApiType { getToken, refreshToken, myProfile, sessionList }
+enum ApiType {
+  getToken,
+  refreshToken,
+  myProfile,
+  sessionList,
+  orderList,
+  customer,
+  products,
+}
 
 class ApiPath {
-  static String auth = "/auth";
+  // static String auth = "/auth";
+  static String auth = "/api/login";
+  static String orders = "/api/mobile/order";
+  static String customers = "/api/mobile/customer";
+  static String products = "/api/mobile/product";
 }
 
 extension ApiMethod on ApiType {
@@ -33,11 +45,9 @@ extension ApiHeader on ApiType {
     switch (this) {
       default:
         Map<String, dynamic> authorizedHeader = header;
-
-        Result? auth = SharedPreferencesManager.instance.userInfo;
-        if (auth != null && auth.tokenId.isNotEmpty) {
-          String token = auth.tokenId;
-          authorizedHeader["Authorization"] = "Bearer $token";
+        String accessToken = SharedPreferencesManager.instance.accessToken;
+        if (accessToken.isNotEmpty) {
+          authorizedHeader["Authorization"] = "Bearer $accessToken";
         }
         return authorizedHeader;
     }
@@ -58,7 +68,12 @@ extension ApiUrl on ApiType {
     switch (this) {
       case ApiType.getToken:
         return ApiPath.auth;
-
+      case ApiType.orderList:
+        return ApiPath.orders;
+      case ApiType.customer:
+        return ApiPath.customers;
+      case ApiType.products:
+        return ApiPath.products;
       default:
         return '';
     }

@@ -136,7 +136,7 @@ class _TuyenDungMainPageState extends State<TuyenDungMainPage> {
           appBar: AppBar(
             title: const Text("TUYỂN DỤNG"),
             elevation: 10,
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             actions: <Widget>[
               IconButton(
                 icon: const Icon(LineIcons.filter),
@@ -168,15 +168,15 @@ class _TuyenDungMainPageState extends State<TuyenDungMainPage> {
             constraints: BoxConstraints(minWidth: screenSize.width),
             decoration: BoxDecoration(
                 border: Border.all(width: 1, color: theme.primaryColor)),
-            child: Padding(
-              padding: const EdgeInsets.only(
+            child: const Padding(
+              padding: EdgeInsets.only(
                 left: 7,
                 right: 7,
               ),
               child: Wrap(
                 alignment: WrapAlignment.start,
                 spacing: 3.0,
-                children: const [Text("No data found!")],
+                children: [Text("No data found!")],
               ),
             ),
           ),
@@ -345,7 +345,7 @@ class _TuyenDungMainPageState extends State<TuyenDungMainPage> {
               '',
               style: TextStyle(color: UIHelper.BIVID_WHITE_BACKGROUND_COLOR),
             ),
-            badgeStyle: badges.BadgeStyle(
+            badgeStyle: const badges.BadgeStyle(
               badgeColor: UIHelper.BIVID_PRIMARY_COLOR,
             ),
             position: badges.BadgePosition.topStart(),
