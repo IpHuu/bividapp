@@ -11,6 +11,8 @@ enum ApiType {
   orderList,
   customer,
   products,
+  createOrder,
+  orderDetail
 }
 
 class ApiPath {
@@ -19,6 +21,8 @@ class ApiPath {
   static String orders = "/api/mobile/order";
   static String customers = "/api/mobile/customer";
   static String products = "/api/mobile/product";
+  static String createOrder = "/api/mobile/create/order";
+  static String orderDetail = "/api/mobile/order-detail";
 }
 
 extension ApiMethod on ApiType {
@@ -26,6 +30,7 @@ extension ApiMethod on ApiType {
     switch (this) {
       case ApiType.getToken:
       case ApiType.refreshToken:
+      case ApiType.createOrder:
         return "POST";
       case ApiType.myProfile:
         return "POST";
@@ -74,6 +79,10 @@ extension ApiUrl on ApiType {
         return ApiPath.customers;
       case ApiType.products:
         return ApiPath.products;
+      case ApiType.createOrder:
+        return ApiPath.createOrder;
+      case ApiType.orderDetail:
+        return ApiPath.orderDetail;
       default:
         return '';
     }

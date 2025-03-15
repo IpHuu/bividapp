@@ -1,7 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bividpharma/model/dtos/products/m_product.dart';
 import 'package:bividpharma/pages/banhang/khachhang/customer_page.dart';
 import 'package:bividpharma/pages/banhang/khachhang/view_model/customer_viewmodel.dart';
 import 'package:bividpharma/pages/banhang/orders/view/edit_product_popup.dart';
+import 'package:bividpharma/pages/banhang/orders/view/order_detail_view.dart';
 import 'package:bividpharma/pages/banhang/orders/view_model/create_order_provider.dart';
 import 'package:bividpharma/pages/banhang/orders/view_model/orders_view_model.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
@@ -30,6 +32,44 @@ class _CreateOrderViewState extends State<CreateOrderView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final viewModel = context.watch<CreateOrderProvider>();
+
+    if (viewModel.errorMessage != null || viewModel.successMessage != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        AwesomeDialog(
+          context: context,
+          dialogType: viewModel.errorMessage != null
+              ? DialogType.error
+              : DialogType.success,
+          animType: AnimType.scale,
+          title: "Thông báo",
+          titleTextStyle: TextStyle(
+            color: viewModel.errorMessage != null ? Colors.red : Colors.green,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+          desc: viewModel.errorMessage ?? viewModel.successMessage,
+          descTextStyle: const TextStyle(fontSize: 16),
+          btnOkColor:
+              viewModel.errorMessage != null ? Colors.red : Colors.green,
+          btnOkOnPress: () {
+            viewModel.closeDialog();
+            // Nếu là thông báo thành công, chuyển qua màn hình khác
+            if (viewModel.isCreateOrderSuccess && viewModel.orderId != null) {
+              Future.delayed(const Duration(milliseconds: 300), () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OrderDetailView(
+                            orderId: viewModel.orderId!,
+                          )), // Màn hình mới
+                );
+              });
+            }
+          },
+        ).show();
+      });
+    }
   }
 
   @override
@@ -49,7 +89,6 @@ class _CreateOrderViewState extends State<CreateOrderView> {
       print("Khách hàng đã chọn: ${selectedCustomer.customer_name}");
       var viewModel = context.read<CreateOrderProvider>();
       viewModel.setSelectedCustomer(selectedCustomer);
-      // TODO: Cập nhật vào ViewModel hoặc UI
     }
   }
 
@@ -72,6 +111,7 @@ class _CreateOrderViewState extends State<CreateOrderView> {
               onPressed: () {
                 // Add your action here
                 print("Lưu đơn hàng");
+                viewModel.createOrder();
               },
             ),
           ],

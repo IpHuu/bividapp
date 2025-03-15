@@ -125,12 +125,6 @@ Future<void> main() async {
       ChangeNotifierProvider<ThemeNotifier>(
           create: (_) => ThemeNotifier(UIHelper.defaultTheme)),
       ChangeNotifierProvider(create: (context) => CreateOrderProvider()),
-      // ChangeNotifierProvider(create: (context) => ProductListVm()),
-      // ChangeNotifierProxyProvider<ProductListVm, CreateOrderProvider>(
-      //   create: (context) => CreateOrderProvider(context.read<ProductListVm>()),
-      //   update: (context, productVm, previous) =>
-      //       previous ?? CreateOrderProvider(productVm),
-      // ),
     ],
     builder: (con, child) {
       bividApp = const BividApp();

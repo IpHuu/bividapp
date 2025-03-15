@@ -1,6 +1,6 @@
 import 'package:bividpharma/model/dtos/donbanhang/m_order.dart';
 import 'package:bividpharma/pages/banhang/listproduct/view_model/product_list_vm.dart';
-import 'package:bividpharma/services/providers/orders_provider.dart';
+import 'package:bividpharma/services/providers/orders_repo.dart';
 import 'package:bividpharma/services/providers/product_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +56,7 @@ class OrdersViewModel extends ChangeNotifier {
     }
     _isLoading = true;
     notifyListeners();
-    final result = await OrdersProvider.fetchOrderList2(
+    final result = await OrdersRepo.fetchOrderList2(
         search: search, offset: offset, limit: limit);
     result.fold(
       (error) {
@@ -79,7 +79,7 @@ class OrdersViewModel extends ChangeNotifier {
     limit = 10;
     _isLoading = true;
     notifyListeners();
-    final result = await OrdersProvider.fetchOrderList2(
+    final result = await OrdersRepo.fetchOrderList2(
         search: search, offset: offset, limit: limit);
     result.fold(
       (error) {

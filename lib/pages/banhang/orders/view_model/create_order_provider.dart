@@ -1,6 +1,8 @@
 import 'package:bividpharma/model/dtos/customer/m_customer.dart';
+import 'package:bividpharma/model/dtos/order/m_order_request.dart';
+import 'package:bividpharma/model/dtos/order/m_product_request.dart';
 import 'package:bividpharma/model/dtos/products/m_product.dart';
-import 'package:bividpharma/pages/banhang/listproduct/view_model/product_list_vm.dart';
+import 'package:bividpharma/services/providers/orders_repo.dart';
 import 'package:bividpharma/services/providers/product_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,11 @@ class CreateOrderProvider with ChangeNotifier {
 
   List<MProduct> get productList => _productList;
 
+  int? _orderId;
+  int? get orderId => _orderId;
+
+  bool _isCreateOrderSuccess = false;
+  bool get isCreateOrderSuccess => _isCreateOrderSuccess;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   void setLoginLoading(bool value) {
@@ -35,7 +42,16 @@ class CreateOrderProvider with ChangeNotifier {
   }
 
   void closeDialog() {
+    _successMessage = null;
     _errorMessage = null;
+    notifyListeners();
+  }
+
+  String? _successMessage;
+  String? get successMessage => _successMessage;
+
+  void setSuccessMessage(String value) {
+    _successMessage = value;
     notifyListeners();
   }
 
@@ -103,6 +119,7 @@ class CreateOrderProvider with ChangeNotifier {
   void clear() {
     selectedProducts.clear();
     _selectedCustomer = null;
+    _isCreateOrderSuccess = false;
     notifyListeners();
   }
 
@@ -143,6 +160,65 @@ class CreateOrderProvider with ChangeNotifier {
     selectedProducts[index] =
         selectedProducts[index].copyWith(quantity: quantity, price: price);
     notifyListeners();
+  }
+
+  void createOrder() async {
+    // validate dữ liệu
+    if (_selectedCustomer == null) {
+      setErrorMessage("Vui lòng chọn khách hàng");
+      return;
+    }
+
+    if (selectedProducts.isEmpty) {
+      setErrorMessage("Vui lòng chọn sản phẩm");
+      return;
+    }
+
+    if ((_selectedCustomer!.customer_addr?.isEmpty ?? true) &&
+        addressController.text.isEmpty) {
+      setErrorMessage("Vui lòng nhập địa chỉ");
+      return;
+    }
+
+    int? customerId = _selectedCustomer!.id;
+    if (customerId == null) {
+      setErrorMessage("Khách hàng không xác định");
+      return;
+    }
+    int totalQuantity =
+        selectedProducts.fold(0, (sum, item) => sum + item.quantity);
+    double totalPrice = selectedProducts.fold(
+        0.0, (sum, item) => sum + (item.quantity * item.price));
+    List<MProductRequest> product = selectedProducts
+        .map((p) => MProductRequest(
+              name: p.prdName ?? "",
+              productCode: p.prdCode ?? "",
+              productId: p.id ?? 0,
+              quantity: p.quantity,
+              price: p.price.toInt(),
+            ))
+        .toList();
+    MOrderRequest orderRequest = MOrderRequest(
+        customerId: customerId,
+        totalQuantity: totalQuantity,
+        totalPrice: totalPrice.toInt(),
+        product: product);
+
+    final response = await OrdersRepo.createOrder(orderRequest);
+    response.fold((error) {
+      print("Lỗi: ${error.message}");
+      _errorMessage = error.message;
+      _isLoading = false;
+      notifyListeners();
+    }, (result) {
+      int? orderId = result.data?.orderID;
+      if (orderId != null) {
+        _orderId = orderId;
+        _isCreateOrderSuccess = true;
+        _successMessage = "Tạo đơn hàng thành công";
+        notifyListeners();
+      }
+    });
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'package:bividpharma/pages/banhang/dathang/booking_order.dart';
 import 'package:bividpharma/pages/banhang/orders/view/create_order_page.dart';
+import 'package:bividpharma/pages/banhang/orders/view/order_detail.dart';
+import 'package:bividpharma/pages/banhang/orders/view/order_detail_view.dart';
 import 'package:bividpharma/pages/banhang/orders/view/orders_view.dart';
 import 'package:bividpharma/pages/giaytamung/giaytamung_detail_page.dart';
 import 'package:bividpharma/pages/giayxinphep/giaynghiphep_detail_page.dart';
@@ -127,6 +129,7 @@ class ScreenRouteName {
   static const String createOrderView = "create_order_view";
   static const String productListView = "product_list_view";
   static const String customerListView = "customer_list_view";
+  static const String orderDetail = "order_detail_view";
 
   static Map<String, WidgetBuilder> get mainRouter {
     return {
@@ -220,6 +223,7 @@ class ScreenRouteName {
       ScreenRouteName.createOrderView: (context) => const CreateOrderPage(),
       ScreenRouteName.productListView: (context) => const ProductView(),
       ScreenRouteName.customerListView: (context) => const CustomerView(),
+      ScreenRouteName.orderDetail: (context) => const OrderDetailPage(),
     };
   }
 }

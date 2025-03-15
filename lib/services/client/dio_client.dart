@@ -107,6 +107,7 @@ class DioClient {
 
   Future<Either<ApiError, MBaseResponse<T>>> request2<T>({
     required ApiType apiType,
+    String? url,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? query,
     Map<String, dynamic>? data,
@@ -114,7 +115,7 @@ class DioClient {
   }) async {
     try {
       final response = await _dio.request(
-        apiType.url,
+        url ?? apiType.url,
         options: Options(
           method: apiType.method,
           headers: headers ?? apiType.headers,

@@ -197,7 +197,16 @@ class _OrderListViewState extends State<OrderListView> {
                           final order = viewModel.orderList[index];
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: OrderItem(order: order),
+                            child: GestureDetector(
+                              onTap: () {
+                                // Handle tap event here
+                                print("Order tapped: ${order.id}");
+                                MyNavigation.intentWithData(
+                                    ScreenRouteName.orderDetail,
+                                    arguments: {'orderId': order.id});
+                              },
+                              child: OrderItem(order: order),
+                            ),
                           );
                         } else {
                           return viewModel.isLoading
