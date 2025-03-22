@@ -1,15 +1,13 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bividpharma/model/dtos/products/m_product.dart';
 import 'package:bividpharma/pages/banhang/khachhang/customer_page.dart';
-import 'package:bividpharma/pages/banhang/khachhang/view_model/customer_viewmodel.dart';
-import 'package:bividpharma/pages/banhang/orders/view/edit_product_popup.dart';
-import 'package:bividpharma/pages/banhang/orders/view/order_detail_view.dart';
-import 'package:bividpharma/pages/banhang/orders/view_model/create_order_provider.dart';
-import 'package:bividpharma/pages/banhang/orders/view_model/orders_view_model.dart';
+import 'package:bividpharma/pages/banhang/orders/create_order/provider/create_order_provider.dart';
+import 'package:bividpharma/pages/banhang/orders/order_detail/view/order_detail_view.dart';
+import 'package:bividpharma/pages/banhang/orders/order_list/widgets/edit_product_popup.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
 import 'package:bividpharma/ui/screen_routes.dart';
+import 'package:bividpharma/utils/extensions/double_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class CreateOrderView extends StatefulWidget {
@@ -204,7 +202,7 @@ class _CreateOrderViewState extends State<CreateOrderView> {
                       const SizedBox(height: 8),
                       TextField(
                         controller: viewModel.noteController,
-                        maxLines: 5, // Tạo ô nhập văn bản nhiều dòng
+                        maxLines: 3, // Tạo ô nhập văn bản nhiều dòng
                         decoration: InputDecoration(
                           hintText: "Example Text",
                           hintStyle: const TextStyle(color: Colors.grey),
@@ -376,7 +374,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.fromLTRB(12, 12, 0, 12),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -388,60 +386,69 @@ class ProductCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Row(
-            spacing: 8,
-            children: [
-              Text("Mã sp: ${product.prdCode ?? ""}",
-                  style: const TextStyle(color: Colors.black54)),
-              const Spacer(),
-              IconButton(
-                icon: const Icon(Icons.edit, color: Colors.black54),
-                onPressed: () {
-                  double? price =
-                      product.price != 0 ? product.price : product.prdSellPrice;
-                  showEditProductPopup(
-                    context,
-                    product.prdCode ?? "",
-                    product.quantity,
-                    price ?? 0,
-                    (updatedQuantity, updatedPrice) {
-                      final viewModel = context.read<CreateOrderProvider>();
-                      viewModel.updatedProduct(
-                          index, updatedQuantity, updatedPrice);
-                    },
-                  );
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.delete, color: Colors.black54),
-                onPressed: () {
-                  final viewModel = context.read<CreateOrderProvider>();
-                  viewModel.removeProduct(product);
-                },
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Tên sản phẩm
+                Text(
+                  product.prdName ?? "",
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.normal),
+                ),
+                Text("Mã: ${product.prdCode ?? ""}",
+                    style: const TextStyle(color: Colors.black54)),
+                const SizedBox(height: 5),
+                Row(
+                  children: [
+                    Text(
+                        "${product.quantity} x ${product.price != 0 ? product.price.toCurrency() : (product.prdSellPrice ?? 0.0).toCurrency()}",
+                        style: const TextStyle(color: Colors.black54)),
+                    const Spacer(),
+                    Text(
+                      "Thành tiền: ${(product.quantity * product.price).toCurrency()}",
+                      style: const TextStyle(color: Colors.black54),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-
-          // Tên sản phẩm
-          Text(
-            product.prdName ?? "",
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            spacing: 8,
-            children: [
-              Text("Số lượng: ${product.quantity}",
-                  style: const TextStyle(color: Colors.black54)),
-              const Spacer(),
-              Text(
-                "Giá bán: ${product.price != 0 ? product.price : product.prdSellPrice}",
-                style: const TextStyle(color: Colors.black54),
-              ),
-            ],
+          SizedBox(
+            width: 50,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.edit, color: Colors.black54),
+                  onPressed: () {
+                    double? price = product.price != 0
+                        ? product.price
+                        : product.prdSellPrice;
+                    showEditProductPopup(
+                      context,
+                      product.prdCode ?? "",
+                      product.quantity,
+                      price ?? 0,
+                      (updatedQuantity, updatedPrice) {
+                        final viewModel = context.read<CreateOrderProvider>();
+                        viewModel.updatedProduct(
+                            index, updatedQuantity, updatedPrice);
+                      },
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete, color: Colors.black54),
+                  onPressed: () {
+                    final viewModel = context.read<CreateOrderProvider>();
+                    viewModel.removeProduct(product);
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),

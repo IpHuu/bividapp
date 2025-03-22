@@ -12,13 +12,13 @@ class MOrderDetail with _$MOrderDetail {
     @JsonKey(name: 'customer_id') int? customerId,
     @JsonKey(name: 'store_id') int? storeId,
     @JsonKey(name: 'input_id') int? inputId,
-    @JsonKey(name: 'sell_date') int? sellDate,
+    // @JsonKey(name: 'sell_date') String? sellDate,
     @JsonKey(name: 'notes') String? notes,
     @JsonKey(name: 'payment_method') int? paymentMethod,
     @JsonKey(name: 'total_price') int? totalPrice,
     @JsonKey(name: 'total_origin_price') int? totalOriginPrice,
     @JsonKey(name: 'discount_item') int? discountItem,
-    @JsonKey(name: 'coupon') String? coupon,
+    // @JsonKey(name: 'coupon') String? coupon,
     @JsonKey(name: 'customer_pay') int? customerPay,
     @JsonKey(name: 'vat') int? vat,
     @JsonKey(name: 'total_money') @Default(0) int totalMoney,
@@ -28,14 +28,14 @@ class MOrderDetail with _$MOrderDetail {
     @JsonKey(name: 'order_status') int? orderStatus,
     @JsonKey(name: 'deleted') int? deleted,
     @JsonKey(name: 'created') String? created,
-    @JsonKey(name: 'updated') int? updated,
+    @JsonKey(name: 'updated') String? updated,
     @JsonKey(name: 'user_init') int? userInit,
     @JsonKey(name: 'user_upd') int? userUpd,
-    @JsonKey(name: 'user_ip') String? userIp,
+    // @JsonKey(name: 'user_ip') String? userIp,
     @JsonKey(name: 'sale_id') int? saleId,
     @JsonKey(name: 'canreturn') int? canReturn,
-    @JsonKey(name: 'attach_file') String? attachFile,
-    @JsonKey(name: 'mtc') String? mtc,
+    // @JsonKey(name: 'attach_file') String? attachFile,
+    // @JsonKey(name: 'mtc') String? mtc,
     @JsonKey(name: 'company_id') String? companyId,
     @JsonKey(name: 'status', fromJson: _statusNameFromJson)
     @Default("")
@@ -43,10 +43,9 @@ class MOrderDetail with _$MOrderDetail {
     @JsonKey(name: 'company', fromJson: _customerNameFromJson)
     @Default("")
     String customerName,
-    //  Status status,
-    //  User user,
-    //  Store stores,
-    //  Company company,
+    @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+    @Default("")
+    String userOrderName,
   }) = _MOrderDetail;
 
   factory MOrderDetail.fromJson(Map<String, dynamic> json) =>
@@ -59,4 +58,8 @@ String _statusNameFromJson(Map<String, dynamic>? status) {
 
 String _customerNameFromJson(Map<String, dynamic>? status) {
   return status?['name'] ?? 'Unknown';
+}
+
+String _userOrderNameFromJson(Map<String, dynamic>? status) {
+  return status?['display_name'] ?? 'Unknown';
 }

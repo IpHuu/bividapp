@@ -1,9 +1,3 @@
-import 'package:bividpharma/model/dtos/products/m_product.dart';
-import 'package:bividpharma/pages/banhang/orders/view_model/create_order_provider.dart';
-import 'package:bividpharma/services/providers/product_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 // class ProductListVm extends ChangeNotifier {
 //   final CreateOrderProvider _createOrderProvider;
 

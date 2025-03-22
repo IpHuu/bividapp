@@ -1,8 +1,9 @@
 import 'dart:convert';
+
 import 'package:bividpharma/model/dtos/auth/m_user.dart';
+import 'package:bividpharma/model/dtos/base/result_authen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/dtos/base/auth_response.dart';
 import '../model/dtos/setting_app/setting_app.dart';
 
 enum SharePreferenceKeys { firstApp, isLogin, authToken, userInfo, settingApp }

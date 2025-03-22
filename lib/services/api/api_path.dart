@@ -1,5 +1,3 @@
-import 'package:bividpharma/model/dtos/auth/m_token.dart';
-import 'package:bividpharma/model/dtos/base/auth_response.dart';
 import 'package:bividpharma/utils/local_share_preference.dart';
 import 'package:dio/dio.dart';
 
@@ -16,8 +14,8 @@ enum ApiType {
 }
 
 class ApiPath {
-  // static String auth = "/auth";
-  static String auth = "/api/login";
+  static String auth = "/auth";
+  // static String auth = "/api/login";
   static String orders = "/api/mobile/order";
   static String customers = "/api/mobile/customer";
   static String products = "/api/mobile/product";

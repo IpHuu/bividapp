@@ -31,6 +31,8 @@ mixin _$MOrder {
   String get storeName => throw _privateConstructorUsedError;
   @JsonKey(name: 'status_name')
   String get statusName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_status')
+  int? get orderStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'company_name')
   String get companyName => throw _privateConstructorUsedError;
   String get created => throw _privateConstructorUsedError;
@@ -60,6 +62,7 @@ abstract class $MOrderCopyWith<$Res> {
       @JsonKey(name: 'user_order') String userOrder,
       @JsonKey(name: 'store_name') String storeName,
       @JsonKey(name: 'status_name') String statusName,
+      @JsonKey(name: 'order_status') int? orderStatus,
       @JsonKey(name: 'company_name') String companyName,
       String created,
       int total_money,
@@ -89,6 +92,7 @@ class _$MOrderCopyWithImpl<$Res, $Val extends MOrder>
     Object? userOrder = null,
     Object? storeName = null,
     Object? statusName = null,
+    Object? orderStatus = freezed,
     Object? companyName = null,
     Object? created = null,
     Object? total_money = null,
@@ -124,6 +128,10 @@ class _$MOrderCopyWithImpl<$Res, $Val extends MOrder>
           ? _value.statusName
           : statusName // ignore: cast_nullable_to_non_nullable
               as String,
+      orderStatus: freezed == orderStatus
+          ? _value.orderStatus
+          : orderStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
       companyName: null == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
@@ -163,6 +171,7 @@ abstract class _$$MOrderImplCopyWith<$Res> implements $MOrderCopyWith<$Res> {
       @JsonKey(name: 'user_order') String userOrder,
       @JsonKey(name: 'store_name') String storeName,
       @JsonKey(name: 'status_name') String statusName,
+      @JsonKey(name: 'order_status') int? orderStatus,
       @JsonKey(name: 'company_name') String companyName,
       String created,
       int total_money,
@@ -190,6 +199,7 @@ class __$$MOrderImplCopyWithImpl<$Res>
     Object? userOrder = null,
     Object? storeName = null,
     Object? statusName = null,
+    Object? orderStatus = freezed,
     Object? companyName = null,
     Object? created = null,
     Object? total_money = null,
@@ -225,6 +235,10 @@ class __$$MOrderImplCopyWithImpl<$Res>
           ? _value.statusName
           : statusName // ignore: cast_nullable_to_non_nullable
               as String,
+      orderStatus: freezed == orderStatus
+          ? _value.orderStatus
+          : orderStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
       companyName: null == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
@@ -260,6 +274,7 @@ class _$MOrderImpl implements _MOrder {
       @JsonKey(name: 'user_order') this.userOrder = "",
       @JsonKey(name: 'store_name') this.storeName = "",
       @JsonKey(name: 'status_name') this.statusName = "",
+      @JsonKey(name: 'order_status') this.orderStatus = 1,
       @JsonKey(name: 'company_name') this.companyName = "",
       this.created = "",
       this.total_money = 0,
@@ -288,6 +303,9 @@ class _$MOrderImpl implements _MOrder {
   @JsonKey(name: 'status_name')
   final String statusName;
   @override
+  @JsonKey(name: 'order_status')
+  final int? orderStatus;
+  @override
   @JsonKey(name: 'company_name')
   final String companyName;
   @override
@@ -303,7 +321,7 @@ class _$MOrderImpl implements _MOrder {
 
   @override
   String toString() {
-    return 'MOrder(id: $id, output_code: $output_code, customer_id: $customer_id, customerName: $customerName, userOrder: $userOrder, storeName: $storeName, statusName: $statusName, companyName: $companyName, created: $created, total_money: $total_money, store_id: $store_id, company_id: $company_id)';
+    return 'MOrder(id: $id, output_code: $output_code, customer_id: $customer_id, customerName: $customerName, userOrder: $userOrder, storeName: $storeName, statusName: $statusName, orderStatus: $orderStatus, companyName: $companyName, created: $created, total_money: $total_money, store_id: $store_id, company_id: $company_id)';
   }
 
   @override
@@ -324,6 +342,8 @@ class _$MOrderImpl implements _MOrder {
                 other.storeName == storeName) &&
             (identical(other.statusName, statusName) ||
                 other.statusName == statusName) &&
+            (identical(other.orderStatus, orderStatus) ||
+                other.orderStatus == orderStatus) &&
             (identical(other.companyName, companyName) ||
                 other.companyName == companyName) &&
             (identical(other.created, created) || other.created == created) &&
@@ -346,6 +366,7 @@ class _$MOrderImpl implements _MOrder {
       userOrder,
       storeName,
       statusName,
+      orderStatus,
       companyName,
       created,
       total_money,
@@ -377,6 +398,7 @@ abstract class _MOrder implements MOrder {
       @JsonKey(name: 'user_order') final String userOrder,
       @JsonKey(name: 'store_name') final String storeName,
       @JsonKey(name: 'status_name') final String statusName,
+      @JsonKey(name: 'order_status') final int? orderStatus,
       @JsonKey(name: 'company_name') final String companyName,
       final String created,
       final int total_money,
@@ -403,6 +425,9 @@ abstract class _MOrder implements MOrder {
   @override
   @JsonKey(name: 'status_name')
   String get statusName;
+  @override
+  @JsonKey(name: 'order_status')
+  int? get orderStatus;
   @override
   @JsonKey(name: 'company_name')
   String get companyName;

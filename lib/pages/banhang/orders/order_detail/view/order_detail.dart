@@ -1,5 +1,5 @@
-import 'package:bividpharma/pages/banhang/orders/view/order_detail_view.dart';
-import 'package:bividpharma/pages/banhang/orders/view_model/order_detail_provider.dart';
+import 'package:bividpharma/pages/banhang/orders/order_detail/provider/order_detail_provider.dart';
+import 'package:bividpharma/pages/banhang/orders/order_detail/view/order_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

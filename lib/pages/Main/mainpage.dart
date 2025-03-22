@@ -1,13 +1,12 @@
-import 'package:badges/badges.dart';
 import 'package:bividpharma/model/dtos/connection_state.dart';
 import 'package:bividpharma/model/main_page_model.dart';
 import 'package:bividpharma/model/menu_model.dart';
 import 'package:bividpharma/pages/system/about.dart';
 // import 'package:bividpharma/pages/firebase_message.dart';
 import 'package:bividpharma/pages/system/home_page.dart';
+import 'package:bividpharma/pages/system/notify_list_page.dart';
 import 'package:bividpharma/pages/system/profile_page.dart';
 import 'package:bividpharma/pages/system/setting.dart';
-import 'package:bividpharma/pages/system/notify_list_page.dart';
 // import 'package:bividpharma/pages/system/notify_page.dart';
 import 'package:bividpharma/services/core_api_service.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
@@ -19,8 +18,6 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 // import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
-
-import '../system/document_file_attached_view.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -71,29 +68,66 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
     final menuList = <MenuModel>[
       const MenuModel(
-          title: "Riêng tư",
-          icon: Icons.person,
+          title: "Tổng quan",
+          icon: Icons.dashboard,
           isRoot: true,
           tiles: [
-            MenuModel(title: "Số liệu", tiles: [
-              MenuModel(title: "Thông tin cá nhân", route: ProfilePage()),
-              MenuModel(title: "Xác nhận bàn giao thiết bị")
-            ]),
-            MenuModel(title: "Lịch họp")
+            MenuModel(title: "Tổng quan tồn kho"),
+            MenuModel(title: "Tổng quan bán hàng"),
+            MenuModel(title: "Tổng quan thầu"),
           ]),
       const MenuModel(
-          title: "Biểu mẫu trình ký",
-          icon: Icons.edit,
+        title: "Hộp Thư",
+        icon: Icons.email,
+        isRoot: true,
+      ),
+      const MenuModel(
+        title: "Đơn hàng",
+        icon: Icons.list,
+        isRoot: true,
+      ),
+      const MenuModel(
+          title: "Đơn hàng online",
+          icon: Icons.list,
           isRoot: true,
           tiles: [
             MenuModel(title: "Văn bản nội bộ"),
             MenuModel(title: "Kế hoạch công việc")
           ]),
       const MenuModel(
-          title: "Mục tiêu kế hoạch - KPI",
-          icon: Icons.task,
+        title: "Khách hàng",
+        icon: Icons.person,
+        isRoot: true,
+      ),
+      const MenuModel(
+        title: "Công nợ",
+        icon: Icons.card_giftcard,
+        isRoot: true,
+      ),
+      const MenuModel(
+          title: "Sản phẩm",
+          icon: Icons.inventory,
           isRoot: true,
-          tiles: [MenuModel(title: "Khai báo"), MenuModel(title: "Mục tiêu")])
+          tiles: [
+            MenuModel(title: "Văn bản nội bộ"),
+            MenuModel(title: "Kế hoạch công việc")
+          ]),
+      const MenuModel(
+          title: "Phân quyền",
+          icon: Icons.lock,
+          isRoot: true,
+          tiles: [
+            MenuModel(title: "Văn bản nội bộ"),
+            MenuModel(title: "Kế hoạch công việc")
+          ]),
+      const MenuModel(
+          title: "Thiết lập",
+          icon: Icons.settings,
+          isRoot: true,
+          tiles: [
+            MenuModel(title: "Khai báo"),
+            MenuModel(title: "Mục tiêu"),
+          ])
     ];
 
     return Scaffold(
@@ -152,7 +186,19 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       return Padding(
           padding: EdgeInsets.only(left: level * 16.0),
           child: ListTile(
-            title: Text(menu.title),
+            leading: menu.isRoot
+                ? Icon(
+                    menu.icon,
+                    color: Theme.of(context).primaryColor,
+                  )
+                : null,
+            title: Text(
+              menu.title,
+              style: TextStyle(
+                color: Theme.of(context).primaryColor, // Active màu xanh
+                fontWeight: FontWeight.normal,
+              ),
+            ),
             onTap: () {
               if (menu.route != null) {
                 Navigator.pop(context);
@@ -171,22 +217,22 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           child: Theme(
             data: Theme.of(context).copyWith(
               dividerColor: Colors.transparent, // Ẩn dòng gạch dưới khi mở
-              expansionTileTheme: const ExpansionTileThemeData(
-                iconColor: Colors.blue, // Màu icon mũi tên
+              expansionTileTheme: ExpansionTileThemeData(
+                iconColor: Theme.of(context).primaryColor, // Màu icon mũi tên
               ),
             ),
             child: ExpansionTile(
               title: Text(
                 menu.title,
-                style: const TextStyle(
-                  color: Colors.blue, // Active màu xanh
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor, // Active màu xanh
                   fontWeight: FontWeight.normal,
                 ),
               ),
               leading: menu.isRoot
                   ? Icon(
                       menu.icon,
-                      color: Colors.blue,
+                      color: Theme.of(context).primaryColor,
                     )
                   : null,
               children: menu.tiles

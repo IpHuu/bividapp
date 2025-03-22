@@ -13,6 +13,7 @@ class MOrder with _$MOrder {
     @JsonKey(name: 'user_order') @Default("") String userOrder,
     @JsonKey(name: 'store_name') @Default("") String storeName,
     @JsonKey(name: 'status_name') @Default("") String statusName,
+    @JsonKey(name: 'order_status') @Default(1) int? orderStatus,
     @JsonKey(name: 'company_name') @Default("") String companyName,
     @Default("") String created,
     @Default(0) int total_money,

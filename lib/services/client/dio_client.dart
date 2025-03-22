@@ -1,14 +1,11 @@
 import 'package:bividpharma/model/dtos/base/api_error.dart';
 import 'package:bividpharma/model/dtos/base/m_base_response.dart';
-import 'package:bividpharma/model/main_page_model.dart';
-import 'package:bividpharma/pages/Auth/view/login_page.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
 import 'package:bividpharma/ui/screen_routes.dart';
 import 'package:bividpharma/utils/local_share_preference.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 import '../api/api_path.dart';
 import 'dio_exception.dart';
@@ -17,11 +14,12 @@ class DioClient {
   static final DioClient _instance = DioClient.share();
   static DioClient get instance => _instance;
   late Dio _dio;
-  // String baseUrl = 'http://192.168.1.121:80';
-  String baseUrl = 'http://192.168.1.128:8000';
+  String baseUrl = 'http://192.168.1.121:80';
+  // String baseUrl = 'http://192.168.1.128:8000';
   String version = 'v0';
   int receiveTimeout = 5000;
   int connectionTimeout = 3000;
+
   DioClient.share() {
     _dio = Dio(BaseOptions(
       baseUrl: baseUrl,

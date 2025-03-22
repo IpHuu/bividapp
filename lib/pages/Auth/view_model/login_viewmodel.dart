@@ -1,13 +1,8 @@
-import 'package:bividpharma/model/dtos/auth/m_user.dart';
 import 'package:bividpharma/model/dtos/base/auth_response.dart';
-import 'package:bividpharma/model/dtos/base/login_response.dart';
 import 'package:bividpharma/model/dtos/setting_app/setting_app.dart';
 import 'package:bividpharma/services/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:local_auth/local_auth.dart';
-import 'package:provider/provider.dart';
-import '../../../common/bivid_settings.dart';
-import '../../../model/dtos/auth/m_token.dart';
+
 import '../../../services/local/local_auth_service.dart';
 import '../../../utils/local_share_preference.dart';
 
@@ -64,15 +59,8 @@ class LoginViewModel with ChangeNotifier {
 
       // // Lấy token đã lưu
       String? tokenId = SharedPreferencesManager.instance.userInfo?.tokenId;
-      if (tokenId != null) {
-        SharedPreferencesManager.instance.saveIsLogin = true;
-        return true;
-      } else {
-        _errorMessage =
-            "Đăng nhập bằng vân tay hoặc Face ID thất bại. Vui lòng đăng nhập bằng thông tin tài khoản và mật khẩu";
-        notifyListeners();
-        return false;
-      }
+      SharedPreferencesManager.instance.saveIsLogin = true;
+      return true;
     } else {
       _errorMessage = "Xác thực thất bại";
       notifyListeners();
@@ -119,19 +107,18 @@ class LoginViewModel with ChangeNotifier {
       _errorMessage = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin";
       notifyListeners();
     }, (result) {
-      LoginResponse? authResponse = result;
-      if (authResponse.accessToken != null &&
-          authResponse.accessToken!.isNotEmpty) {
+      // LoginResponse? authResponse = result;
+      AuthResponse? authResponse = result;
+      if (authResponse.result != null &&
+          authResponse.result!.tokenId.isNotEmpty) {
         _loginLoading = false;
         notifyListeners();
 
         SharedPreferencesManager.instance.saveAccessToken =
-            authResponse.accessToken!;
-        MUser? user = authResponse.user;
-        if (user != null) {
-          SharedPreferencesManager.instance.saveUserInfo(user);
-          SharedPreferencesManager.instance.saveIsLogin = true;
-        }
+            authResponse.result!.tokenId;
+        // MUser? user = authResponse;
+        // SharedPreferencesManager.instance.saveUserInfo(user);
+        SharedPreferencesManager.instance.saveIsLogin = true;
 
         handleRememberLogin(username);
         loginSuccess = true;

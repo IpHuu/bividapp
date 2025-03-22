@@ -1,15 +1,13 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:bividpharma/model/dtos/donbanhang/m_order.dart';
-import 'package:bividpharma/pages/banhang/orders/view/order_item.dart';
+import 'package:bividpharma/pages/banhang/orders/order_list/widgets/order_item.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
 import 'package:bividpharma/ui/screen_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../view_model/orders_view_model.dart';
+import '../provider/orders_view_model.dart';
 
 class OrderListView extends StatefulWidget {
   const OrderListView({Key? key}) : super(key: key);

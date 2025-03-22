@@ -29,9 +29,8 @@ mixin _$MOrderDetail {
   @JsonKey(name: 'store_id')
   int? get storeId => throw _privateConstructorUsedError;
   @JsonKey(name: 'input_id')
-  int? get inputId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sell_date')
-  int? get sellDate => throw _privateConstructorUsedError;
+  int? get inputId =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'sell_date') String? sellDate,
   @JsonKey(name: 'notes')
   String? get notes => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_method')
@@ -41,9 +40,8 @@ mixin _$MOrderDetail {
   @JsonKey(name: 'total_origin_price')
   int? get totalOriginPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'discount_item')
-  int? get discountItem => throw _privateConstructorUsedError;
-  @JsonKey(name: 'coupon')
-  String? get coupon => throw _privateConstructorUsedError;
+  int? get discountItem =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'coupon') String? coupon,
   @JsonKey(name: 'customer_pay')
   int? get customerPay => throw _privateConstructorUsedError;
   @JsonKey(name: 'vat')
@@ -64,27 +62,26 @@ mixin _$MOrderDetail {
   @JsonKey(name: 'created')
   String? get created => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated')
-  int? get updated => throw _privateConstructorUsedError;
+  String? get updated => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_init')
   int? get userInit => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_upd')
-  int? get userUpd => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_ip')
-  String? get userIp => throw _privateConstructorUsedError;
+  int? get userUpd =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'user_ip') String? userIp,
   @JsonKey(name: 'sale_id')
   int? get saleId => throw _privateConstructorUsedError;
   @JsonKey(name: 'canreturn')
-  int? get canReturn => throw _privateConstructorUsedError;
-  @JsonKey(name: 'attach_file')
-  String? get attachFile => throw _privateConstructorUsedError;
-  @JsonKey(name: 'mtc')
-  String? get mtc => throw _privateConstructorUsedError;
+  int? get canReturn =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'attach_file') String? attachFile,
+// @JsonKey(name: 'mtc') String? mtc,
   @JsonKey(name: 'company_id')
   String? get companyId => throw _privateConstructorUsedError;
   @JsonKey(name: 'status', fromJson: _statusNameFromJson)
   String get statusName => throw _privateConstructorUsedError;
   @JsonKey(name: 'company', fromJson: _customerNameFromJson)
   String get customerName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+  String get userOrderName => throw _privateConstructorUsedError;
 
   /// Serializes this MOrderDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -108,13 +105,11 @@ abstract class $MOrderDetailCopyWith<$Res> {
       @JsonKey(name: 'customer_id') int? customerId,
       @JsonKey(name: 'store_id') int? storeId,
       @JsonKey(name: 'input_id') int? inputId,
-      @JsonKey(name: 'sell_date') int? sellDate,
       @JsonKey(name: 'notes') String? notes,
       @JsonKey(name: 'payment_method') int? paymentMethod,
       @JsonKey(name: 'total_price') int? totalPrice,
       @JsonKey(name: 'total_origin_price') int? totalOriginPrice,
       @JsonKey(name: 'discount_item') int? discountItem,
-      @JsonKey(name: 'coupon') String? coupon,
       @JsonKey(name: 'customer_pay') int? customerPay,
       @JsonKey(name: 'vat') int? vat,
       @JsonKey(name: 'total_money') int totalMoney,
@@ -124,18 +119,17 @@ abstract class $MOrderDetailCopyWith<$Res> {
       @JsonKey(name: 'order_status') int? orderStatus,
       @JsonKey(name: 'deleted') int? deleted,
       @JsonKey(name: 'created') String? created,
-      @JsonKey(name: 'updated') int? updated,
+      @JsonKey(name: 'updated') String? updated,
       @JsonKey(name: 'user_init') int? userInit,
       @JsonKey(name: 'user_upd') int? userUpd,
-      @JsonKey(name: 'user_ip') String? userIp,
       @JsonKey(name: 'sale_id') int? saleId,
       @JsonKey(name: 'canreturn') int? canReturn,
-      @JsonKey(name: 'attach_file') String? attachFile,
-      @JsonKey(name: 'mtc') String? mtc,
       @JsonKey(name: 'company_id') String? companyId,
       @JsonKey(name: 'status', fromJson: _statusNameFromJson) String statusName,
       @JsonKey(name: 'company', fromJson: _customerNameFromJson)
-      String customerName});
+      String customerName,
+      @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+      String userOrderName});
 }
 
 /// @nodoc
@@ -158,13 +152,11 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
     Object? customerId = freezed,
     Object? storeId = freezed,
     Object? inputId = freezed,
-    Object? sellDate = freezed,
     Object? notes = freezed,
     Object? paymentMethod = freezed,
     Object? totalPrice = freezed,
     Object? totalOriginPrice = freezed,
     Object? discountItem = freezed,
-    Object? coupon = freezed,
     Object? customerPay = freezed,
     Object? vat = freezed,
     Object? totalMoney = null,
@@ -177,14 +169,12 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
     Object? updated = freezed,
     Object? userInit = freezed,
     Object? userUpd = freezed,
-    Object? userIp = freezed,
     Object? saleId = freezed,
     Object? canReturn = freezed,
-    Object? attachFile = freezed,
-    Object? mtc = freezed,
     Object? companyId = freezed,
     Object? statusName = null,
     Object? customerName = null,
+    Object? userOrderName = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -207,10 +197,6 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
           ? _value.inputId
           : inputId // ignore: cast_nullable_to_non_nullable
               as int?,
-      sellDate: freezed == sellDate
-          ? _value.sellDate
-          : sellDate // ignore: cast_nullable_to_non_nullable
-              as int?,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -231,10 +217,6 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
           ? _value.discountItem
           : discountItem // ignore: cast_nullable_to_non_nullable
               as int?,
-      coupon: freezed == coupon
-          ? _value.coupon
-          : coupon // ignore: cast_nullable_to_non_nullable
-              as String?,
       customerPay: freezed == customerPay
           ? _value.customerPay
           : customerPay // ignore: cast_nullable_to_non_nullable
@@ -274,7 +256,7 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
       updated: freezed == updated
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       userInit: freezed == userInit
           ? _value.userInit
           : userInit // ignore: cast_nullable_to_non_nullable
@@ -283,10 +265,6 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
           ? _value.userUpd
           : userUpd // ignore: cast_nullable_to_non_nullable
               as int?,
-      userIp: freezed == userIp
-          ? _value.userIp
-          : userIp // ignore: cast_nullable_to_non_nullable
-              as String?,
       saleId: freezed == saleId
           ? _value.saleId
           : saleId // ignore: cast_nullable_to_non_nullable
@@ -295,14 +273,6 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
           ? _value.canReturn
           : canReturn // ignore: cast_nullable_to_non_nullable
               as int?,
-      attachFile: freezed == attachFile
-          ? _value.attachFile
-          : attachFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mtc: freezed == mtc
-          ? _value.mtc
-          : mtc // ignore: cast_nullable_to_non_nullable
-              as String?,
       companyId: freezed == companyId
           ? _value.companyId
           : companyId // ignore: cast_nullable_to_non_nullable
@@ -314,6 +284,10 @@ class _$MOrderDetailCopyWithImpl<$Res, $Val extends MOrderDetail>
       customerName: null == customerName
           ? _value.customerName
           : customerName // ignore: cast_nullable_to_non_nullable
+              as String,
+      userOrderName: null == userOrderName
+          ? _value.userOrderName
+          : userOrderName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -333,13 +307,11 @@ abstract class _$$MOrderDetailImplCopyWith<$Res>
       @JsonKey(name: 'customer_id') int? customerId,
       @JsonKey(name: 'store_id') int? storeId,
       @JsonKey(name: 'input_id') int? inputId,
-      @JsonKey(name: 'sell_date') int? sellDate,
       @JsonKey(name: 'notes') String? notes,
       @JsonKey(name: 'payment_method') int? paymentMethod,
       @JsonKey(name: 'total_price') int? totalPrice,
       @JsonKey(name: 'total_origin_price') int? totalOriginPrice,
       @JsonKey(name: 'discount_item') int? discountItem,
-      @JsonKey(name: 'coupon') String? coupon,
       @JsonKey(name: 'customer_pay') int? customerPay,
       @JsonKey(name: 'vat') int? vat,
       @JsonKey(name: 'total_money') int totalMoney,
@@ -349,18 +321,17 @@ abstract class _$$MOrderDetailImplCopyWith<$Res>
       @JsonKey(name: 'order_status') int? orderStatus,
       @JsonKey(name: 'deleted') int? deleted,
       @JsonKey(name: 'created') String? created,
-      @JsonKey(name: 'updated') int? updated,
+      @JsonKey(name: 'updated') String? updated,
       @JsonKey(name: 'user_init') int? userInit,
       @JsonKey(name: 'user_upd') int? userUpd,
-      @JsonKey(name: 'user_ip') String? userIp,
       @JsonKey(name: 'sale_id') int? saleId,
       @JsonKey(name: 'canreturn') int? canReturn,
-      @JsonKey(name: 'attach_file') String? attachFile,
-      @JsonKey(name: 'mtc') String? mtc,
       @JsonKey(name: 'company_id') String? companyId,
       @JsonKey(name: 'status', fromJson: _statusNameFromJson) String statusName,
       @JsonKey(name: 'company', fromJson: _customerNameFromJson)
-      String customerName});
+      String customerName,
+      @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+      String userOrderName});
 }
 
 /// @nodoc
@@ -381,13 +352,11 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
     Object? customerId = freezed,
     Object? storeId = freezed,
     Object? inputId = freezed,
-    Object? sellDate = freezed,
     Object? notes = freezed,
     Object? paymentMethod = freezed,
     Object? totalPrice = freezed,
     Object? totalOriginPrice = freezed,
     Object? discountItem = freezed,
-    Object? coupon = freezed,
     Object? customerPay = freezed,
     Object? vat = freezed,
     Object? totalMoney = null,
@@ -400,14 +369,12 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
     Object? updated = freezed,
     Object? userInit = freezed,
     Object? userUpd = freezed,
-    Object? userIp = freezed,
     Object? saleId = freezed,
     Object? canReturn = freezed,
-    Object? attachFile = freezed,
-    Object? mtc = freezed,
     Object? companyId = freezed,
     Object? statusName = null,
     Object? customerName = null,
+    Object? userOrderName = null,
   }) {
     return _then(_$MOrderDetailImpl(
       id: freezed == id
@@ -430,10 +397,6 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
           ? _value.inputId
           : inputId // ignore: cast_nullable_to_non_nullable
               as int?,
-      sellDate: freezed == sellDate
-          ? _value.sellDate
-          : sellDate // ignore: cast_nullable_to_non_nullable
-              as int?,
       notes: freezed == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
@@ -454,10 +417,6 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
           ? _value.discountItem
           : discountItem // ignore: cast_nullable_to_non_nullable
               as int?,
-      coupon: freezed == coupon
-          ? _value.coupon
-          : coupon // ignore: cast_nullable_to_non_nullable
-              as String?,
       customerPay: freezed == customerPay
           ? _value.customerPay
           : customerPay // ignore: cast_nullable_to_non_nullable
@@ -497,7 +456,7 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
       updated: freezed == updated
           ? _value.updated
           : updated // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       userInit: freezed == userInit
           ? _value.userInit
           : userInit // ignore: cast_nullable_to_non_nullable
@@ -506,10 +465,6 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
           ? _value.userUpd
           : userUpd // ignore: cast_nullable_to_non_nullable
               as int?,
-      userIp: freezed == userIp
-          ? _value.userIp
-          : userIp // ignore: cast_nullable_to_non_nullable
-              as String?,
       saleId: freezed == saleId
           ? _value.saleId
           : saleId // ignore: cast_nullable_to_non_nullable
@@ -518,14 +473,6 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
           ? _value.canReturn
           : canReturn // ignore: cast_nullable_to_non_nullable
               as int?,
-      attachFile: freezed == attachFile
-          ? _value.attachFile
-          : attachFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mtc: freezed == mtc
-          ? _value.mtc
-          : mtc // ignore: cast_nullable_to_non_nullable
-              as String?,
       companyId: freezed == companyId
           ? _value.companyId
           : companyId // ignore: cast_nullable_to_non_nullable
@@ -537,6 +484,10 @@ class __$$MOrderDetailImplCopyWithImpl<$Res>
       customerName: null == customerName
           ? _value.customerName
           : customerName // ignore: cast_nullable_to_non_nullable
+              as String,
+      userOrderName: null == userOrderName
+          ? _value.userOrderName
+          : userOrderName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -551,13 +502,11 @@ class _$MOrderDetailImpl implements _MOrderDetail {
       @JsonKey(name: 'customer_id') this.customerId,
       @JsonKey(name: 'store_id') this.storeId,
       @JsonKey(name: 'input_id') this.inputId,
-      @JsonKey(name: 'sell_date') this.sellDate,
       @JsonKey(name: 'notes') this.notes,
       @JsonKey(name: 'payment_method') this.paymentMethod,
       @JsonKey(name: 'total_price') this.totalPrice,
       @JsonKey(name: 'total_origin_price') this.totalOriginPrice,
       @JsonKey(name: 'discount_item') this.discountItem,
-      @JsonKey(name: 'coupon') this.coupon,
       @JsonKey(name: 'customer_pay') this.customerPay,
       @JsonKey(name: 'vat') this.vat,
       @JsonKey(name: 'total_money') this.totalMoney = 0,
@@ -571,16 +520,15 @@ class _$MOrderDetailImpl implements _MOrderDetail {
       @JsonKey(name: 'updated') this.updated,
       @JsonKey(name: 'user_init') this.userInit,
       @JsonKey(name: 'user_upd') this.userUpd,
-      @JsonKey(name: 'user_ip') this.userIp,
       @JsonKey(name: 'sale_id') this.saleId,
       @JsonKey(name: 'canreturn') this.canReturn,
-      @JsonKey(name: 'attach_file') this.attachFile,
-      @JsonKey(name: 'mtc') this.mtc,
       @JsonKey(name: 'company_id') this.companyId,
       @JsonKey(name: 'status', fromJson: _statusNameFromJson)
       this.statusName = "",
       @JsonKey(name: 'company', fromJson: _customerNameFromJson)
-      this.customerName = ""})
+      this.customerName = "",
+      @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+      this.userOrderName = ""})
       : _orderDetails = orderDetails;
 
   factory _$MOrderDetailImpl.fromJson(Map<String, dynamic> json) =>
@@ -601,9 +549,7 @@ class _$MOrderDetailImpl implements _MOrderDetail {
   @override
   @JsonKey(name: 'input_id')
   final int? inputId;
-  @override
-  @JsonKey(name: 'sell_date')
-  final int? sellDate;
+// @JsonKey(name: 'sell_date') String? sellDate,
   @override
   @JsonKey(name: 'notes')
   final String? notes;
@@ -619,9 +565,7 @@ class _$MOrderDetailImpl implements _MOrderDetail {
   @override
   @JsonKey(name: 'discount_item')
   final int? discountItem;
-  @override
-  @JsonKey(name: 'coupon')
-  final String? coupon;
+// @JsonKey(name: 'coupon') String? coupon,
   @override
   @JsonKey(name: 'customer_pay')
   final int? customerPay;
@@ -659,28 +603,22 @@ class _$MOrderDetailImpl implements _MOrderDetail {
   final String? created;
   @override
   @JsonKey(name: 'updated')
-  final int? updated;
+  final String? updated;
   @override
   @JsonKey(name: 'user_init')
   final int? userInit;
   @override
   @JsonKey(name: 'user_upd')
   final int? userUpd;
-  @override
-  @JsonKey(name: 'user_ip')
-  final String? userIp;
+// @JsonKey(name: 'user_ip') String? userIp,
   @override
   @JsonKey(name: 'sale_id')
   final int? saleId;
   @override
   @JsonKey(name: 'canreturn')
   final int? canReturn;
-  @override
-  @JsonKey(name: 'attach_file')
-  final String? attachFile;
-  @override
-  @JsonKey(name: 'mtc')
-  final String? mtc;
+// @JsonKey(name: 'attach_file') String? attachFile,
+// @JsonKey(name: 'mtc') String? mtc,
   @override
   @JsonKey(name: 'company_id')
   final String? companyId;
@@ -690,10 +628,13 @@ class _$MOrderDetailImpl implements _MOrderDetail {
   @override
   @JsonKey(name: 'company', fromJson: _customerNameFromJson)
   final String customerName;
+  @override
+  @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+  final String userOrderName;
 
   @override
   String toString() {
-    return 'MOrderDetail(id: $id, outputCode: $outputCode, customerId: $customerId, storeId: $storeId, inputId: $inputId, sellDate: $sellDate, notes: $notes, paymentMethod: $paymentMethod, totalPrice: $totalPrice, totalOriginPrice: $totalOriginPrice, discountItem: $discountItem, coupon: $coupon, customerPay: $customerPay, vat: $vat, totalMoney: $totalMoney, totalQuantity: $totalQuantity, lack: $lack, orderDetails: $orderDetails, orderStatus: $orderStatus, deleted: $deleted, created: $created, updated: $updated, userInit: $userInit, userUpd: $userUpd, userIp: $userIp, saleId: $saleId, canReturn: $canReturn, attachFile: $attachFile, mtc: $mtc, companyId: $companyId, statusName: $statusName, customerName: $customerName)';
+    return 'MOrderDetail(id: $id, outputCode: $outputCode, customerId: $customerId, storeId: $storeId, inputId: $inputId, notes: $notes, paymentMethod: $paymentMethod, totalPrice: $totalPrice, totalOriginPrice: $totalOriginPrice, discountItem: $discountItem, customerPay: $customerPay, vat: $vat, totalMoney: $totalMoney, totalQuantity: $totalQuantity, lack: $lack, orderDetails: $orderDetails, orderStatus: $orderStatus, deleted: $deleted, created: $created, updated: $updated, userInit: $userInit, userUpd: $userUpd, saleId: $saleId, canReturn: $canReturn, companyId: $companyId, statusName: $statusName, customerName: $customerName, userOrderName: $userOrderName)';
   }
 
   @override
@@ -708,8 +649,6 @@ class _$MOrderDetailImpl implements _MOrderDetail {
                 other.customerId == customerId) &&
             (identical(other.storeId, storeId) || other.storeId == storeId) &&
             (identical(other.inputId, inputId) || other.inputId == inputId) &&
-            (identical(other.sellDate, sellDate) ||
-                other.sellDate == sellDate) &&
             (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
@@ -719,7 +658,6 @@ class _$MOrderDetailImpl implements _MOrderDetail {
                 other.totalOriginPrice == totalOriginPrice) &&
             (identical(other.discountItem, discountItem) ||
                 other.discountItem == discountItem) &&
-            (identical(other.coupon, coupon) || other.coupon == coupon) &&
             (identical(other.customerPay, customerPay) ||
                 other.customerPay == customerPay) &&
             (identical(other.vat, vat) || other.vat == vat) &&
@@ -738,19 +676,17 @@ class _$MOrderDetailImpl implements _MOrderDetail {
             (identical(other.userInit, userInit) ||
                 other.userInit == userInit) &&
             (identical(other.userUpd, userUpd) || other.userUpd == userUpd) &&
-            (identical(other.userIp, userIp) || other.userIp == userIp) &&
             (identical(other.saleId, saleId) || other.saleId == saleId) &&
             (identical(other.canReturn, canReturn) ||
                 other.canReturn == canReturn) &&
-            (identical(other.attachFile, attachFile) ||
-                other.attachFile == attachFile) &&
-            (identical(other.mtc, mtc) || other.mtc == mtc) &&
             (identical(other.companyId, companyId) ||
                 other.companyId == companyId) &&
             (identical(other.statusName, statusName) ||
                 other.statusName == statusName) &&
             (identical(other.customerName, customerName) ||
-                other.customerName == customerName));
+                other.customerName == customerName) &&
+            (identical(other.userOrderName, userOrderName) ||
+                other.userOrderName == userOrderName));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -762,13 +698,11 @@ class _$MOrderDetailImpl implements _MOrderDetail {
         customerId,
         storeId,
         inputId,
-        sellDate,
         notes,
         paymentMethod,
         totalPrice,
         totalOriginPrice,
         discountItem,
-        coupon,
         customerPay,
         vat,
         totalMoney,
@@ -781,14 +715,12 @@ class _$MOrderDetailImpl implements _MOrderDetail {
         updated,
         userInit,
         userUpd,
-        userIp,
         saleId,
         canReturn,
-        attachFile,
-        mtc,
         companyId,
         statusName,
-        customerName
+        customerName,
+        userOrderName
       ]);
 
   /// Create a copy of MOrderDetail
@@ -814,13 +746,11 @@ abstract class _MOrderDetail implements MOrderDetail {
       @JsonKey(name: 'customer_id') final int? customerId,
       @JsonKey(name: 'store_id') final int? storeId,
       @JsonKey(name: 'input_id') final int? inputId,
-      @JsonKey(name: 'sell_date') final int? sellDate,
       @JsonKey(name: 'notes') final String? notes,
       @JsonKey(name: 'payment_method') final int? paymentMethod,
       @JsonKey(name: 'total_price') final int? totalPrice,
       @JsonKey(name: 'total_origin_price') final int? totalOriginPrice,
       @JsonKey(name: 'discount_item') final int? discountItem,
-      @JsonKey(name: 'coupon') final String? coupon,
       @JsonKey(name: 'customer_pay') final int? customerPay,
       @JsonKey(name: 'vat') final int? vat,
       @JsonKey(name: 'total_money') final int totalMoney,
@@ -831,19 +761,18 @@ abstract class _MOrderDetail implements MOrderDetail {
       @JsonKey(name: 'order_status') final int? orderStatus,
       @JsonKey(name: 'deleted') final int? deleted,
       @JsonKey(name: 'created') final String? created,
-      @JsonKey(name: 'updated') final int? updated,
+      @JsonKey(name: 'updated') final String? updated,
       @JsonKey(name: 'user_init') final int? userInit,
       @JsonKey(name: 'user_upd') final int? userUpd,
-      @JsonKey(name: 'user_ip') final String? userIp,
       @JsonKey(name: 'sale_id') final int? saleId,
       @JsonKey(name: 'canreturn') final int? canReturn,
-      @JsonKey(name: 'attach_file') final String? attachFile,
-      @JsonKey(name: 'mtc') final String? mtc,
       @JsonKey(name: 'company_id') final String? companyId,
       @JsonKey(name: 'status', fromJson: _statusNameFromJson)
       final String statusName,
       @JsonKey(name: 'company', fromJson: _customerNameFromJson)
-      final String customerName}) = _$MOrderDetailImpl;
+      final String customerName,
+      @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+      final String userOrderName}) = _$MOrderDetailImpl;
 
   factory _MOrderDetail.fromJson(Map<String, dynamic> json) =
       _$MOrderDetailImpl.fromJson;
@@ -862,10 +791,7 @@ abstract class _MOrderDetail implements MOrderDetail {
   int? get storeId;
   @override
   @JsonKey(name: 'input_id')
-  int? get inputId;
-  @override
-  @JsonKey(name: 'sell_date')
-  int? get sellDate;
+  int? get inputId; // @JsonKey(name: 'sell_date') String? sellDate,
   @override
   @JsonKey(name: 'notes')
   String? get notes;
@@ -880,10 +806,7 @@ abstract class _MOrderDetail implements MOrderDetail {
   int? get totalOriginPrice;
   @override
   @JsonKey(name: 'discount_item')
-  int? get discountItem;
-  @override
-  @JsonKey(name: 'coupon')
-  String? get coupon;
+  int? get discountItem; // @JsonKey(name: 'coupon') String? coupon,
   @override
   @JsonKey(name: 'customer_pay')
   int? get customerPay;
@@ -913,28 +836,20 @@ abstract class _MOrderDetail implements MOrderDetail {
   String? get created;
   @override
   @JsonKey(name: 'updated')
-  int? get updated;
+  String? get updated;
   @override
   @JsonKey(name: 'user_init')
   int? get userInit;
   @override
   @JsonKey(name: 'user_upd')
-  int? get userUpd;
-  @override
-  @JsonKey(name: 'user_ip')
-  String? get userIp;
+  int? get userUpd; // @JsonKey(name: 'user_ip') String? userIp,
   @override
   @JsonKey(name: 'sale_id')
   int? get saleId;
   @override
   @JsonKey(name: 'canreturn')
-  int? get canReturn;
-  @override
-  @JsonKey(name: 'attach_file')
-  String? get attachFile;
-  @override
-  @JsonKey(name: 'mtc')
-  String? get mtc;
+  int? get canReturn; // @JsonKey(name: 'attach_file') String? attachFile,
+// @JsonKey(name: 'mtc') String? mtc,
   @override
   @JsonKey(name: 'company_id')
   String? get companyId;
@@ -944,6 +859,9 @@ abstract class _MOrderDetail implements MOrderDetail {
   @override
   @JsonKey(name: 'company', fromJson: _customerNameFromJson)
   String get customerName;
+  @override
+  @JsonKey(name: 'user', fromJson: _userOrderNameFromJson)
+  String get userOrderName;
 
   /// Create a copy of MOrderDetail
   /// with the given fields replaced by the non-null parameter values.

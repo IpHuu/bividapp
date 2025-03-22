@@ -1,3 +1,4 @@
+import 'package:bividpharma/model/dtos/common/order_status.dart';
 import 'package:bividpharma/model/dtos/donbanhang/m_order.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -43,11 +44,15 @@ class OrderItem extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.green[100],
+                  color: StatusOrder.getById(order.orderStatus ?? 1)
+                      .backgroundColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Text(order.statusName,
-                    style: TextStyle(color: Colors.green[800], fontSize: 12)),
+                child: Text(StatusOrder.getById(order.orderStatus ?? 1).name,
+                    style: TextStyle(
+                        color: StatusOrder.getById(order.orderStatus ?? 1)
+                            .textColor,
+                        fontSize: 12)),
               )
             ],
           ),
