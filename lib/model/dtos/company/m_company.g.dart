@@ -1,0 +1,83 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'm_company.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$MCompanyImpl _$$MCompanyImplFromJson(Map<String, dynamic> json) =>
+    _$MCompanyImpl(
+      maCty: json['ma_cty'] as String?,
+      tenTcty: json['ten_tcty'] as String?,
+      tenCty: json['ten_cty'] as String?,
+      diaChi: json['dia_chi'] as String?,
+      giamDoc: json['giam_doc'] as String?,
+      ktt: json['ktt'] as String?,
+      thuQuy: json['thu_quy'] as String?,
+      maThue: json['ma_thue'] as String?,
+      tel: json['tel'] as String?,
+      fax: json['fax'] as String?,
+      email: json['email'] as String?,
+      tenNh: json['ten_nh'] as String?,
+      soTkNh: json['so_tk_nh'] as String?,
+      tinhTpNh: json['tinh_tp_nh'] as String?,
+      loaiQd: json['loai_qd'] as String?,
+      tenQdCdkt15: json['ten_qd_cdkt15'] as String?,
+      tenQdCdkt48: json['ten_qd_cdkt48'] as String?,
+      logo: json['logo'] as String?,
+      active: json['active'] as bool?,
+      tenCty2: json['ten_cty2'] as String?,
+      maCtyTax: json['ma_cty_tax'] as String?,
+      tenNh1: json['ten_nh1'] as String?,
+      soTkNh1: json['so_tk_nh1'] as String?,
+      tinhTpNh1: json['tinh_tp_nh1'] as String?,
+      hotline: json['hotline'] as String?,
+      soDangKy: json['so_dang_ky'] as String?,
+      website: json['website'] as String?,
+      maNh: json['ma_nh'] as String?,
+      maNh1: json['ma_nh1'] as String?,
+      maCdkt: json['ma_cdkt'] as String?,
+      gdNhanSu: json['gdNhanSu'] as String?,
+      tongGD: json['tongGD'] as String?,
+      giayUyQuyen: json['giayUyQuyen'] as String?,
+      daiDienMoi: json['daiDienMoi'] as String?,
+    );
+
+Map<String, dynamic> _$$MCompanyImplToJson(_$MCompanyImpl instance) =>
+    <String, dynamic>{
+      'ma_cty': instance.maCty,
+      'ten_tcty': instance.tenTcty,
+      'ten_cty': instance.tenCty,
+      'dia_chi': instance.diaChi,
+      'giam_doc': instance.giamDoc,
+      'ktt': instance.ktt,
+      'thu_quy': instance.thuQuy,
+      'ma_thue': instance.maThue,
+      'tel': instance.tel,
+      'fax': instance.fax,
+      'email': instance.email,
+      'ten_nh': instance.tenNh,
+      'so_tk_nh': instance.soTkNh,
+      'tinh_tp_nh': instance.tinhTpNh,
+      'loai_qd': instance.loaiQd,
+      'ten_qd_cdkt15': instance.tenQdCdkt15,
+      'ten_qd_cdkt48': instance.tenQdCdkt48,
+      'logo': instance.logo,
+      'active': instance.active,
+      'ten_cty2': instance.tenCty2,
+      'ma_cty_tax': instance.maCtyTax,
+      'ten_nh1': instance.tenNh1,
+      'so_tk_nh1': instance.soTkNh1,
+      'tinh_tp_nh1': instance.tinhTpNh1,
+      'hotline': instance.hotline,
+      'so_dang_ky': instance.soDangKy,
+      'website': instance.website,
+      'ma_nh': instance.maNh,
+      'ma_nh1': instance.maNh1,
+      'ma_cdkt': instance.maCdkt,
+      'gdNhanSu': instance.gdNhanSu,
+      'tongGD': instance.tongGD,
+      'giayUyQuyen': instance.giayUyQuyen,
+      'daiDienMoi': instance.daiDienMoi,
+    };

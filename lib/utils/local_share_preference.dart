@@ -55,6 +55,13 @@ class SharedPreferencesManager {
     await _prefs.setString(SharePreferenceKeys.userInfo.name, jsonString);
   }
 
+  // Lấy thông tin MUser từ SharedPreferences
+  MUser? getUserInfo() {
+    String? jsonString = _prefs.getString(SharePreferenceKeys.userInfo.name);
+    if (jsonString == null) return null;
+    return MUser.fromJson(jsonDecode(jsonString));
+  }
+
   // Lấy thông tin Result từ SharedPreferences
   Result? get userInfo {
     String? jsonString = _prefs.getString(SharePreferenceKeys.userInfo.name);

@@ -46,6 +46,10 @@ import 'package:bividpharma/pages/system/tracuu_hoso_page.dart';
 import 'package:bividpharma/pages/thanhquyettoan/phieuthanhquyettoan_detail_page.dart';
 import 'package:bividpharma/pages/thanhquyettoan/phieuthanhquyettoan_list_page.dart';
 import 'package:bividpharma/pages/thanhquyettoan/phieuthanhquyettoan_preview.dart';
+import 'package:bividpharma/pages/tongquan/banhang/view/order_report_page.dart';
+import 'package:bividpharma/pages/tongquan/thau/view/bidding_report_page.dart';
+import 'package:bividpharma/pages/tongquan/tonkho/view/inventory_detail.page.dart';
+import 'package:bividpharma/pages/tongquan/tonkho/view/inventory_report_page.dart';
 // import 'package:bividpharma/pages/system/upgrader_page.dart.bak';
 import 'package:bividpharma/services/firebase/message_view.dart';
 import 'package:flutter/widgets.dart';
@@ -128,6 +132,11 @@ class ScreenRouteName {
   static const String productListView = "product_list_view";
   static const String customerListView = "customer_list_view";
   static const String orderDetail = "order_detail_view";
+
+  static const String tongquantonkho = "tongquantonkho";
+  static const String inventory_detail = "inventory_detail";
+  static const String orderReport = "orderReport";
+  static const String biddingReportView = "BiddingReportView";
 
   static Map<String, WidgetBuilder> get mainRouter {
     return {
@@ -222,6 +231,13 @@ class ScreenRouteName {
       ScreenRouteName.productListView: (context) => const ProductView(),
       ScreenRouteName.customerListView: (context) => const CustomerView(),
       ScreenRouteName.orderDetail: (context) => const OrderDetailPage(),
+
+      ScreenRouteName.tongquantonkho: (context) => const InventoryReportView(),
+      ScreenRouteName.inventory_detail: (context) => const InventoryDetail(
+            tonKhoEnum: TonKhoEnum.kenh,
+          ),
+      ScreenRouteName.orderReport: (context) => const OrderReportView(),
+      ScreenRouteName.biddingReportView: (context) => const BiddingReportView(),
     };
   }
 }

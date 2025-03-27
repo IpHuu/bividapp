@@ -12,6 +12,12 @@ _$MBaseResponseImpl<T> _$$MBaseResponseImplFromJson<T>(
 ) =>
     _$MBaseResponseImpl<T>(
       data: _$nullableGenericFromJson(json['data'], fromJsonT),
+      success: json['success'] as bool?,
+      message: json['message'] as String?,
+      count: (json['count'] as num?)?.toInt(),
+      validationErrors: (json['validationErrors'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       pagination: json['pagination'] == null
           ? null
           : MPagination.fromJson(json['pagination'] as Map<String, dynamic>),
@@ -26,6 +32,10 @@ Map<String, dynamic> _$$MBaseResponseImplToJson<T>(
 ) =>
     <String, dynamic>{
       'data': _$nullableGenericToJson(instance.data, toJsonT),
+      'success': instance.success,
+      'message': instance.message,
+      'count': instance.count,
+      'validationErrors': instance.validationErrors,
       'pagination': instance.pagination,
       'error': instance.error,
     };

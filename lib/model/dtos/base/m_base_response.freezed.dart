@@ -22,6 +22,10 @@ MBaseResponse<T> _$MBaseResponseFromJson<T>(
 /// @nodoc
 mixin _$MBaseResponse<T> {
   T? get data => throw _privateConstructorUsedError;
+  bool? get success => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  int? get count => throw _privateConstructorUsedError;
+  List<String>? get validationErrors => throw _privateConstructorUsedError;
   MPagination? get pagination => throw _privateConstructorUsedError;
   MError? get error => throw _privateConstructorUsedError;
 
@@ -42,7 +46,14 @@ abstract class $MBaseResponseCopyWith<T, $Res> {
           MBaseResponse<T> value, $Res Function(MBaseResponse<T>) then) =
       _$MBaseResponseCopyWithImpl<T, $Res, MBaseResponse<T>>;
   @useResult
-  $Res call({T? data, MPagination? pagination, MError? error});
+  $Res call(
+      {T? data,
+      bool? success,
+      String? message,
+      int? count,
+      List<String>? validationErrors,
+      MPagination? pagination,
+      MError? error});
 
   $MPaginationCopyWith<$Res>? get pagination;
   $MErrorCopyWith<$Res>? get error;
@@ -64,6 +75,10 @@ class _$MBaseResponseCopyWithImpl<T, $Res, $Val extends MBaseResponse<T>>
   @override
   $Res call({
     Object? data = freezed,
+    Object? success = freezed,
+    Object? message = freezed,
+    Object? count = freezed,
+    Object? validationErrors = freezed,
     Object? pagination = freezed,
     Object? error = freezed,
   }) {
@@ -72,6 +87,22 @@ class _$MBaseResponseCopyWithImpl<T, $Res, $Val extends MBaseResponse<T>>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T?,
+      success: freezed == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      validationErrors: freezed == validationErrors
+          ? _value.validationErrors
+          : validationErrors // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       pagination: freezed == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
@@ -120,7 +151,14 @@ abstract class _$$MBaseResponseImplCopyWith<T, $Res>
       __$$MBaseResponseImplCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({T? data, MPagination? pagination, MError? error});
+  $Res call(
+      {T? data,
+      bool? success,
+      String? message,
+      int? count,
+      List<String>? validationErrors,
+      MPagination? pagination,
+      MError? error});
 
   @override
   $MPaginationCopyWith<$Res>? get pagination;
@@ -142,6 +180,10 @@ class __$$MBaseResponseImplCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? data = freezed,
+    Object? success = freezed,
+    Object? message = freezed,
+    Object? count = freezed,
+    Object? validationErrors = freezed,
     Object? pagination = freezed,
     Object? error = freezed,
   }) {
@@ -150,6 +192,22 @@ class __$$MBaseResponseImplCopyWithImpl<T, $Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as T?,
+      success: freezed == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      validationErrors: freezed == validationErrors
+          ? _value._validationErrors
+          : validationErrors // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       pagination: freezed == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
@@ -165,7 +223,15 @@ class __$$MBaseResponseImplCopyWithImpl<T, $Res>
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
 class _$MBaseResponseImpl<T> implements _MBaseResponse<T> {
-  const _$MBaseResponseImpl({this.data, this.pagination, this.error});
+  const _$MBaseResponseImpl(
+      {this.data,
+      this.success,
+      this.message,
+      this.count,
+      final List<String>? validationErrors,
+      this.pagination,
+      this.error})
+      : _validationErrors = validationErrors;
 
   factory _$MBaseResponseImpl.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
@@ -174,13 +240,30 @@ class _$MBaseResponseImpl<T> implements _MBaseResponse<T> {
   @override
   final T? data;
   @override
+  final bool? success;
+  @override
+  final String? message;
+  @override
+  final int? count;
+  final List<String>? _validationErrors;
+  @override
+  List<String>? get validationErrors {
+    final value = _validationErrors;
+    if (value == null) return null;
+    if (_validationErrors is EqualUnmodifiableListView)
+      return _validationErrors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
   final MPagination? pagination;
   @override
   final MError? error;
 
   @override
   String toString() {
-    return 'MBaseResponse<$T>(data: $data, pagination: $pagination, error: $error)';
+    return 'MBaseResponse<$T>(data: $data, success: $success, message: $message, count: $count, validationErrors: $validationErrors, pagination: $pagination, error: $error)';
   }
 
   @override
@@ -189,6 +272,11 @@ class _$MBaseResponseImpl<T> implements _MBaseResponse<T> {
         (other.runtimeType == runtimeType &&
             other is _$MBaseResponseImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.count, count) || other.count == count) &&
+            const DeepCollectionEquality()
+                .equals(other._validationErrors, _validationErrors) &&
             (identical(other.pagination, pagination) ||
                 other.pagination == pagination) &&
             (identical(other.error, error) || other.error == error));
@@ -196,8 +284,15 @@ class _$MBaseResponseImpl<T> implements _MBaseResponse<T> {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(data), pagination, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(data),
+      success,
+      message,
+      count,
+      const DeepCollectionEquality().hash(_validationErrors),
+      pagination,
+      error);
 
   /// Create a copy of MBaseResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -217,6 +312,10 @@ class _$MBaseResponseImpl<T> implements _MBaseResponse<T> {
 abstract class _MBaseResponse<T> implements MBaseResponse<T> {
   const factory _MBaseResponse(
       {final T? data,
+      final bool? success,
+      final String? message,
+      final int? count,
+      final List<String>? validationErrors,
       final MPagination? pagination,
       final MError? error}) = _$MBaseResponseImpl<T>;
 
@@ -226,6 +325,14 @@ abstract class _MBaseResponse<T> implements MBaseResponse<T> {
 
   @override
   T? get data;
+  @override
+  bool? get success;
+  @override
+  String? get message;
+  @override
+  int? get count;
+  @override
+  List<String>? get validationErrors;
   @override
   MPagination? get pagination;
   @override

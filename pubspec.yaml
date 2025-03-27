@@ -106,6 +106,9 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
   dartz: ^0.10.1
+  smooth_page_indicator: ^1.2.1
+  fl_chart: ^0.64.0
+  horizontal_data_table: ^4.3.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

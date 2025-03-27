@@ -2,12 +2,13 @@ import 'package:bividpharma/model/dtos/connection_state.dart';
 import 'package:bividpharma/model/main_page_model.dart';
 import 'package:bividpharma/model/menu_model.dart';
 import 'package:bividpharma/pages/system/about.dart';
-// import 'package:bividpharma/pages/firebase_message.dart';
 import 'package:bividpharma/pages/system/home_page.dart';
 import 'package:bividpharma/pages/system/notify_list_page.dart';
 import 'package:bividpharma/pages/system/profile_page.dart';
 import 'package:bividpharma/pages/system/setting.dart';
-// import 'package:bividpharma/pages/system/notify_page.dart';
+import 'package:bividpharma/pages/tongquan/banhang/view/order_report_page.dart';
+import 'package:bividpharma/pages/tongquan/thau/view/bidding_report_page.dart';
+import 'package:bividpharma/pages/tongquan/tonkho/view/inventory_report_page.dart';
 import 'package:bividpharma/services/core_api_service.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
 import 'package:bividpharma/ui/screen_routes.dart';
@@ -16,7 +17,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-// import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
@@ -25,9 +25,9 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
+class _MainPageState extends State<MainPage> {
   late PersistentTabController _tabController;
-  late AnimationController _progressBarController;
+  // late AnimationController _progressBarController;
   late MainPageModel _mainModel;
   late bool _serverConnected = false;
 
@@ -43,20 +43,20 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     _mainModel.connectionStream.stream.listen(_onConnectionChanged);
     _serverConnected = _mainModel.myConnectionState.state == HubState.connected;
 
-    _progressBarController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 5),
-    )..addListener(() {
-        setState(() {});
-      });
-    _progressBarController.repeat(reverse: true);
+    // _progressBarController = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(seconds: 5),
+    // )..addListener(() {
+    //     setState(() {});
+    //   });
+    // _progressBarController.repeat(reverse: true);
     super.initState();
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _progressBarController.dispose();
+    // _progressBarController.dispose();
     super.dispose();
   }
 
@@ -72,20 +72,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           icon: Icons.dashboard,
           isRoot: true,
           tiles: [
-            MenuModel(title: "Tổng quan tồn kho"),
-            MenuModel(title: "Tổng quan bán hàng"),
-            MenuModel(title: "Tổng quan thầu"),
+            MenuModel(title: "Tổng quan tồn kho", route: InventoryReportView()),
+            MenuModel(title: "Tổng quan bán hàng", route: OrderReportView()),
+            MenuModel(title: "Tổng quan thầu", route: BiddingReportView()),
           ]),
-      const MenuModel(
-        title: "Hộp Thư",
-        icon: Icons.email,
-        isRoot: true,
-      ),
-      const MenuModel(
-        title: "Đơn hàng",
-        icon: Icons.list,
-        isRoot: true,
-      ),
+      const MenuModel(title: "Hộp Thư", icon: Icons.email, isRoot: true),
+      const MenuModel(title: "Đơn hàng", icon: Icons.list, isRoot: true),
       const MenuModel(
           title: "Đơn hàng online",
           icon: Icons.list,
@@ -476,28 +468,28 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   }
 
   // ignore: body_might_complete_normally_nullable
-  PreferredSize? _buildBottomBar() {
-    if (_serverConnected) {
-      return null;
-    }
-    /*
-    return PreferredSize(
-        preferredSize: const Size.fromHeight(3.0),
-        child: Container(
-          padding: const EdgeInsets.only(
-            top: 0,
-            bottom: 0,
-          ),
-          color: Colors.white,
-          height: 3.0,
-          child: LinearProgressIndicator(
-            value: _progressBarController.value,
-            color: UIHelper.BIVID_WARNING_COLOR,
-            semanticsLabel: 'Connecting Bivid Server...',
-          ),
-        ));
-    */
-  }
+  // PreferredSize? _buildBottomBar() {
+  //   if (_serverConnected) {
+  //     return null;
+  //   }
+  //   /*
+  //   return PreferredSize(
+  //       preferredSize: const Size.fromHeight(3.0),
+  //       child: Container(
+  //         padding: const EdgeInsets.only(
+  //           top: 0,
+  //           bottom: 0,
+  //         ),
+  //         color: Colors.white,
+  //         height: 3.0,
+  //         child: LinearProgressIndicator(
+  //           value: _progressBarController.value,
+  //           color: UIHelper.BIVID_WARNING_COLOR,
+  //           semanticsLabel: 'Connecting Bivid Server...',
+  //         ),
+  //       ));
+  //   */
+  // }
 
   Widget _buildMainView() {
     final tabView = PersistentTabView(

@@ -2,11 +2,10 @@ import 'package:bividpharma/model/main_page_model.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
 import 'package:bividpharma/ui/screen_routes.dart';
 import 'package:bividpharma/utils/local_share_preference.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:upgrader/upgrader.dart';
 
 class AboutePage extends StatefulWidget {
@@ -85,7 +84,7 @@ class _AboutePageState extends State<AboutePage> {
       child: IntroductionScreen(
         key: introKey,
         globalBackgroundColor: Colors.white,
-        globalHeader: Align(
+        globalHeader: const Align(
           alignment: Alignment.topRight,
           child: SafeArea(
             child: Column(
@@ -142,19 +141,19 @@ class _AboutePageState extends State<AboutePage> {
                     ],
                   ),
                 ),
-                DefaultTextStyle(
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                      fontSize: 14.0,
-                      fontFamily: 'Horizon',
-                      color: theme.primaryColor),
-                  child: AnimatedTextKit(repeatForever: true, animatedTexts: [
-                    TypewriterAnimatedText('Tất cả vì sức khỏe cộng đồng'),
-                    WavyAnimatedText('Nhà phân phối hàng đầu Việt Nam',
-                        speed: const Duration(milliseconds: 100)),
-                    TypewriterAnimatedText('Sản phẩm an toàn'),
-                  ]),
-                ),
+                // DefaultTextStyle(
+                //   textAlign: TextAlign.justify,
+                //   style: TextStyle(
+                //       fontSize: 14.0,
+                //       fontFamily: 'Horizon',
+                //       color: theme.primaryColor),
+                //   child: AnimatedTextKit(repeatForever: true, animatedTexts: [
+                //     TypewriterAnimatedText('Tất cả vì sức khỏe cộng đồng'),
+                //     WavyAnimatedText('Nhà phân phối hàng đầu Việt Nam',
+                //         speed: const Duration(milliseconds: 100)),
+                //     TypewriterAnimatedText('Sản phẩm an toàn'),
+                //   ]),
+                // ),
                 const SizedBox(
                   height: 20,
                 ),

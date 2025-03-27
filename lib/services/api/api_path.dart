@@ -10,7 +10,12 @@ enum ApiType {
   customer,
   products,
   createOrder,
-  orderDetail
+  orderDetail,
+  company,
+  danhMucVatTu,
+  danhMucKhachHang,
+  baoCaoTonKho,
+  baoCaoThau,
 }
 
 class ApiPath {
@@ -21,6 +26,11 @@ class ApiPath {
   static String products = "/api/mobile/product";
   static String createOrder = "/api/mobile/create/order";
   static String orderDetail = "/api/mobile/order-detail";
+  static String company = "/danhmuc/cong-ty";
+  static String danhMucVatTu = "/danhmuc/danh-muc-vat-tu";
+  static String danhMucKhachHang = "/danhmuc/danh-muc-khach-hang";
+  static String baoCaoTonKho = "/baocao/bao-cao-tong-quan-ton-kho";
+  static String baoCaoThau = "/baocao/bao-cao-tong-quan-thau";
 }
 
 extension ApiMethod on ApiType {
@@ -81,6 +91,16 @@ extension ApiUrl on ApiType {
         return ApiPath.createOrder;
       case ApiType.orderDetail:
         return ApiPath.orderDetail;
+      case ApiType.company:
+        return ApiPath.company;
+      case ApiType.danhMucVatTu:
+        return ApiPath.danhMucVatTu;
+      case ApiType.danhMucKhachHang:
+        return ApiPath.danhMucKhachHang;
+      case ApiType.baoCaoTonKho:
+        return ApiPath.baoCaoTonKho;
+      case ApiType.baoCaoThau:
+        return ApiPath.baoCaoThau;
       default:
         return '';
     }

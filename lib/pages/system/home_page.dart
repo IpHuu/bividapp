@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:bividpharma/model/main_page_model.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
 import 'package:bividpharma/ui/screen_routes.dart';
@@ -5,8 +6,6 @@ import 'package:bividpharma/ui/ui_helper.dart';
 import 'package:bividpharma/ui/widgets/funtion_item_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart' as badges;
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +15,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _HomePageState extends State<HomePage> {
   static const List<String> bividImages = [
     "assets/01_universal.jpg",
     "assets/02_universal.jpg",
@@ -41,7 +40,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     //final isUsingDevUI = UIHelper.isUsingDevUI(context);
     final model = context.watch<MainPageModel>();
     final isUsingDevUI = model.userSettings.usingDevelopingUI;
-
+    // return const Text("Home View");
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.only(
@@ -53,22 +52,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Container(
-                padding: EdgeInsets.zero,
-                child: CarouselSlider(
-                  options: CarouselOptions(height: 80, autoPlay: true),
-                  items: bividImages
-                      .map((item) => Container(
-                            alignment: Alignment.center,
-                            color: Theme.of(context).colorScheme.surface,
-                            child: Center(
-                                child: Image.asset(
-                              item,
-                              fit: BoxFit.fitWidth,
-                            )),
-                          ))
-                      .toList(),
-                )),
             _createBoxFunction(
               'Trình ký hồ sơ',
               _buildFuntionGrid(context),
