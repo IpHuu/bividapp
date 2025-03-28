@@ -29,9 +29,13 @@ class DanhMucRepository {
 
   static Future<Either<ApiError, MBaseResponse<List<MVatTu>>>>
       fetchDanhMucVatTu(
-          {String search = "", int offset = 1, int limit = 10}) async {
+          {String? search,
+          String? maCty,
+          int offset = 1,
+          int limit = 10}) async {
     Map<String, dynamic> params = {
-      "ma_cty": "002",
+      "ma_cty": maCty,
+      "ten": search,
       "pageIndex": offset,
       "pageSize": limit,
     };

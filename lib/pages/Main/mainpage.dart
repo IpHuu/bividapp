@@ -2,12 +2,14 @@ import 'package:bividpharma/model/dtos/connection_state.dart';
 import 'package:bividpharma/model/main_page_model.dart';
 import 'package:bividpharma/model/menu_model.dart';
 import 'package:bividpharma/pages/system/about.dart';
+import 'package:bividpharma/pages/system/empty_function_page.dart';
 import 'package:bividpharma/pages/system/home_page.dart';
 import 'package:bividpharma/pages/system/notify_list_page.dart';
 import 'package:bividpharma/pages/system/profile_page.dart';
 import 'package:bividpharma/pages/system/setting.dart';
 import 'package:bividpharma/pages/tongquan/banhang/view/order_report_page.dart';
 import 'package:bividpharma/pages/tongquan/thau/view/bidding_report_page.dart';
+import 'package:bividpharma/pages/tongquan/tonghop/view/tonghop_report_page.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/view/inventory_report_page.dart';
 import 'package:bividpharma/services/core_api_service.dart';
 import 'package:bividpharma/ui/my_navigation.dart';
@@ -72,9 +74,15 @@ class _MainPageState extends State<MainPage> {
           icon: Icons.dashboard,
           isRoot: true,
           tiles: [
-            MenuModel(title: "Tổng quan tồn kho", route: InventoryReportView()),
-            MenuModel(title: "Tổng quan bán hàng", route: OrderReportView()),
+            MenuModel(title: "Tổng quan công ty", route: EmptyFunctionPage()),
+            MenuModel(title: "Tổng quan tổng hợp", route: TonghopReportView()),
+            MenuModel(title: "Quản lý kinh doanh", route: EmptyFunctionPage()),
+            MenuModel(title: "Tổng quan lợi nhuận", route: EmptyFunctionPage()),
+            MenuModel(title: "Tổng quan công nợ", route: EmptyFunctionPage()),
+            MenuModel(title: "Tổng quan marketing", route: EmptyFunctionPage()),
             MenuModel(title: "Tổng quan thầu", route: BiddingReportView()),
+            MenuModel(title: "Tổng quan bán hàng", route: OrderReportView()),
+            MenuModel(title: "Tổng quan tồn kho", route: InventoryReportView()),
           ]),
       const MenuModel(title: "Hộp Thư", icon: Icons.email, isRoot: true),
       const MenuModel(title: "Đơn hàng", icon: Icons.list, isRoot: true),

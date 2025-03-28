@@ -1,8 +1,13 @@
+import 'package:bividpharma/pages/tongquan/thau/compoments/bidding_chart.dart';
 import 'package:bividpharma/pages/tongquan/thau/compoments/bidding_options.dart';
 import 'package:bividpharma/pages/tongquan/thau/compoments/bidding_summay_card.dart';
 import 'package:bividpharma/pages/tongquan/thau/viewmodel/bidding_report_viewmodel.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/compoments/filter_sheet.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/compoments/starts_cart.dart';
+import 'package:bividpharma/ui/widgets/cards/summary_card.dart';
+import 'package:bividpharma/ui/widgets/charts/bar_chart.dart';
+import 'package:bividpharma/ui/widgets/charts/line2_chart.dart';
+import 'package:bividpharma/ui/widgets/charts/pie_chart.dart';
 import 'package:bividpharma/ui/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,10 +45,15 @@ class _BiddingReportPageState extends State<BiddingReportPage> {
         borderRadius: BorderRadius.circular(20),
       ),
       builder: (context) {
-        return FilterBottomSheet(
+        return FractionallySizedBox(
+          heightFactor: 1.0, // Chiều cao full màn hình
+          child: FilterBottomSheet(
+            context: context,
             selectedCompany: viewmodel.selectedCompany,
             listCompany: viewmodel.listCompany,
-            onFilterApplied: (startDate, endDate, maCty, maVattu) {});
+            onFilterApplied: (startDate, endDate, maCty, maVattu) {},
+          ),
+        );
       },
     );
   }
@@ -133,24 +143,86 @@ class _DashboardSBiddingcreen extends State<DashboardSBiddingcreen> {
               //     print("Selected: $selected"); // Gọi API hoặc cập nhật UI
               //   },
               // ),
-              // Container(
-              //   margin: const EdgeInsets.symmetric(horizontal: 16),
-              //   padding: const EdgeInsets.all(16),
-              //   decoration: BoxDecoration(
-              //     color: Colors.white,
-              //     borderRadius: BorderRadius.circular(8),
-              //     boxShadow: [
-              //       const BoxShadow(
-              //         color: Colors.black26,
-              //         blurRadius: 4,
-              //         offset: Offset(0, 1),
-              //       ),
-              //     ],
-              //   ),
-              //   child: const InventoryChart(
-              //     numberOfDays: 30,
-              //   ),
-              // ),
+              const SizedBox(height: 16),
+              const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 16,
+                children: [
+                  SummaryCard(),
+                  SummaryCard(),
+                  SummaryCard(),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                ),
+                child: const RevenueChart(),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                ),
+                child: const LineChart3Sample(),
+              ),
+              const SizedBox(height: 16),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                ),
+                child: const OverviewPieChart(),
+              ),
+
+              const SizedBox(height: 16),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                ),
+                child: const BarChartSample(),
+              ),
+
               const SizedBox(height: 16),
               const Padding(
                 padding: EdgeInsets.only(left: 16),

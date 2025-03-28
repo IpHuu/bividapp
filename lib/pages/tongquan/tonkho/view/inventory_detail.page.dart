@@ -63,6 +63,7 @@ class _InventoryDetailState extends State<InventoryDetail> {
         ),
         builder: (context) {
           return FilterBottomSheet(
+              context: context,
               onFilterApplied: (startDate, endDate, maCty, maVattu) {});
         });
   }

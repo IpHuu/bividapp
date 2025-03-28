@@ -1,21 +1,23 @@
-import 'package:bividpharma/pages/tongquan/thau/viewmodel/bidding_report_viewmodel.dart';
+import 'package:bividpharma/pages/tongquan/banhang/viewmodel/order_report_viewmodel.dart';
 import 'package:bividpharma/ui/widgets/datatable/horizontal_datatable.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BiddingOptionsGrid extends StatelessWidget {
-  const BiddingOptionsGrid({Key? key}) : super(key: key);
+class OrderOptionGrid extends StatelessWidget {
+  const OrderOptionGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> items = [
+      {"title": "Loại"},
       {"title": "Chi Nhánh"},
+      {"title": "Nhà sản xuất"},
+      {"title": "Kênh"},
       {"title": "Nhóm khách hàng"},
       {"title": "Nhóm sản phẩm"},
       {"title": "Nhân viên"},
       {"title": "Khách hàng"},
       {"title": "Sản phẩm"},
-      {"title": "Tồn thầu"},
     ];
 
     return Padding(
@@ -56,7 +58,7 @@ class OptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final viewModel = context.read<BiddingReportViewmodel>();
+        final viewModel = context.read<OrderReportViewmodel>();
 
         Navigator.push(
           context,

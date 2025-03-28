@@ -1,9 +1,11 @@
 import 'package:bividpharma/model/dtos/company/m_company.dart';
 import 'package:bividpharma/model/dtos/vattu/m_vattu.dart';
 import 'package:bividpharma/services/providers/danhmuc_provider.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 class FilterBottomSheet extends StatefulWidget {
+  final BuildContext context;
   final Function(
           DateTime? startDate, DateTime? endDate, MCompany? macty, String? mavt)
       onFilterApplied;
@@ -11,6 +13,7 @@ class FilterBottomSheet extends StatefulWidget {
   final List<MCompany>? listCompany;
   const FilterBottomSheet(
       {Key? key,
+      required this.context,
       required this.onFilterApplied,
       this.selectedCompany,
       this.listCompany})
@@ -28,9 +31,10 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   DateTime? startDate;
   DateTime? endDate;
   MVatTu? selectedVatTu;
-  List<MVatTu> list = [];
+  List<MVatTu>? list;
   MCompany? selectedCompany;
   List<MCompany>? listCompany = [];
+
   Future<void> _pickDate(BuildContext context, bool isStartDate) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -53,21 +57,26 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   @override
   void initState() {
     super.initState();
-    // fetchDanhSachVatTu();
-    // fetchDanhSachCongty();
     selectedCompany = widget.selectedCompany;
     listCompany = widget.listCompany;
   }
 
-  void fetchDanhSachVatTu() async {
-    final result = await DanhMucRepository.fetchDanhMucVatTu();
-    result.fold((error) {}, (data) {
-      print(data);
-      if (mounted) {
-        setState(() {
-          list = data.data ?? [];
-        });
+  Future<List<MVatTu>> fetchDanhSachVatTu(
+      {String? macty, String? keyword}) async {
+    if (keyword != null && keyword.isEmpty) {
+      if (list != null && list!.isNotEmpty) {
+        return list!;
       }
+    }
+    final result = await DanhMucRepository.fetchDanhMucVatTu(
+        maCty: selectedCompany != null ? selectedCompany!.maCty : macty,
+        search: keyword);
+    return result.fold((error) {
+      return [];
+    }, (data) {
+      print(data);
+      list = data.data ?? [];
+      return data.data ?? [];
     });
   }
 
@@ -132,30 +141,24 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 (value) => setState(() => selectedCompany = value)),
 
             const SizedBox(height: 16),
-            // buildDropdownProduct("Sản phẩm", selectedVatTu, list,
-            //     (value) => setState(() => selectedVatTu = value)),
-            // const SizedBox(height: 16),
+            buildDropdownProduct("Sản phẩm", selectedVatTu, list ?? [],
+                (value) => setState(() => selectedVatTu = value)),
+            const SizedBox(height: 16),
 
             // Nút Xóa & Áp dụng
+
             Row(
               children: [
                 Expanded(
                   child: TextButton(
                     onPressed: () {
-                      setState(() {
-                        selectedType = null;
-                        selectedUnit = null;
-                        selectedProduct = null;
-                        selectedCustomer = null;
-                        startDate = null;
-                        endDate = null;
-                      });
+                      Navigator.pop(this.context);
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.black54,
                       foregroundColor: Colors.white,
                     ),
-                    child: const Text("Xóa"),
+                    child: const Text("Đóng"),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -264,22 +267,55 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: value != null
-                  ? Colors.blue
-                  : Colors.grey.shade400, // Border xanh nếu có giá trị
+              color: Colors.grey.shade400, // Chỉ viền xám, không xanh
               width: 1.5,
             ),
             borderRadius: BorderRadius.circular(8),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: DropdownButtonFormField<MVatTu>(
-            value: value,
-            decoration: const InputDecoration(border: InputBorder.none),
-            items: items
-                .map((e) =>
-                    DropdownMenuItem(value: e, child: Text(e.tenVt ?? "")))
-                .toList(),
-            onChanged: onChanged,
+          child: DropdownSearch<MVatTu>(
+            asyncItems: (String filter) async {
+              if (filter.isNotEmpty || list == null) {
+                return fetchDanhSachVatTu(keyword: filter);
+              }
+              return list ?? [];
+            },
+            itemAsString: (MVatTu? item) => item?.tenVt ?? "Không có tên",
+            popupProps: PopupProps.menu(
+              showSearchBox: true,
+              searchDelay: const Duration(milliseconds: 2000),
+              isFilterOnline: true,
+              searchFieldProps: TextFieldProps(
+                decoration: InputDecoration(
+                  labelText: "Tìm kiếm sản phẩm",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(
+                      color: Colors.grey, // Màu viền khi chưa focus
+                      width: 1.5,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: const BorderSide(
+                      color: Colors.grey, // Chỉnh lại thành màu xám
+                      width: 1.5,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            dropdownDecoratorProps: const DropDownDecoratorProps(
+              dropdownSearchDecoration: InputDecoration(
+                border: InputBorder.none, // Xóa viền xanh
+              ),
+            ),
+            onChanged: (MVatTu? value) {
+              if (value != null) {
+                selectedVatTu = value;
+                print("Đã chọn: ${value.tenVt}");
+              }
+            },
           ),
         ),
       ],

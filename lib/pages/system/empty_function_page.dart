@@ -19,6 +19,7 @@ class _EmptyFunctionPageState extends State<EmptyFunctionPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           leading: BackButton(

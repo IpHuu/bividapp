@@ -3,6 +3,7 @@ import 'package:bividpharma/pages/tongquan/tonkho/compoments/filter_sheet.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/compoments/inventory_chart.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/compoments/starts_cart.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/viewmodel/inventory_viewmodel.dart';
+import 'package:bividpharma/ui/widgets/charts/legend_item.dart';
 import 'package:bividpharma/utils/extensions/date_time_extension.dart';
 import 'package:bividpharma/utils/extensions/double_extension.dart';
 import 'package:flutter/material.dart';
@@ -48,22 +49,35 @@ class _InventoryReportContentState extends State<InventoryReportContent> {
     final viewmodel = Provider.of<InventoryViewmodel>(context, listen: false);
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+      isScrollControlled: true, // Quan trọng để cho phép mở rộng chiều cao
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
-        return FilterBottomSheet(
-            selectedCompany: viewmodel.selectedCompany,
-            listCompany: viewmodel.listCompany,
-            onFilterApplied: (startDate, endDate, maCty, maVatTu) {
-              print("Ngày bắt đầu: $startDate");
-              print("Ngày kết thúc: $endDate");
-              viewmodel.selectedCompany = maCty;
-              viewmodel.setFromDate(startDate.toFormattedString() ?? "");
-              viewmodel.setToDate(endDate.toFormattedString() ?? "");
-              viewmodel.filterData();
-            });
+        return DraggableScrollableSheet(
+          initialChildSize: 0.9, // Chiều cao ban đầu (90% màn hình)
+          minChildSize: 0.5, // Chiều cao tối thiểu
+          maxChildSize: 1.0, // Chiều cao tối đa (100% màn hình)
+          expand: false, // Giúp tránh chiếm toàn bộ màn hình ngay lập tức
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: FilterBottomSheet(
+                context: context,
+                selectedCompany: viewmodel.selectedCompany,
+                listCompany: viewmodel.listCompany,
+                onFilterApplied: (startDate, endDate, maCty, maVatTu) {
+                  print("Ngày bắt đầu: $startDate");
+                  print("Ngày kết thúc: $endDate");
+                  viewmodel.selectedCompany = maCty;
+                  viewmodel.setFromDate(startDate.toFormattedString() ?? "");
+                  viewmodel.setToDate(endDate.toFormattedString() ?? "");
+                  viewmodel.filterData();
+                },
+              ),
+            );
+          },
+        );
       },
     );
   }
@@ -234,8 +248,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ],
                 ),
-                child: const InventoryChart(
-                  numberOfDays: 30,
+                child: const Column(
+                  children: [
+                    InventoryChart(
+                      numberOfDays: 30,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        LegendItem(
+                            color: Color.fromARGB(255, 11, 119, 187),
+                            text: "Tiền tồn"),
+                        SizedBox(width: 8),
+                        LegendItem(
+                            color: Color.fromARGB(255, 196, 59, 59),
+                            text: "Tiền nhập"),
+                        SizedBox(width: 8),
+                        LegendItem(
+                            color: Color.fromARGB(255, 219, 138, 23),
+                            text: "Tiền xuất"),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 16),
