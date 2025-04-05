@@ -1,22 +1,15 @@
-import 'package:bividpharma/model/enums/type_thau.dart';
-import 'package:bividpharma/pages/tongquan/thau/view/bidding_detail_page.dart';
-import 'package:bividpharma/pages/tongquan/thau/viewmodel/bidding_report_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class BiddingOptionsGrid extends StatelessWidget {
-  const BiddingOptionsGrid({Key? key}) : super(key: key);
+class LoiNhuanOptionsGrid extends StatelessWidget {
+  const LoiNhuanOptionsGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> items = [
-      {"title": "Chi Nhánh"},
-      {"title": "Nhóm khách hàng"},
-      {"title": "Nhóm sản phẩm"},
-      {"title": "Nhân viên"},
-      {"title": "Khách hàng"},
-      {"title": "Sản phẩm"},
-      {"title": "Tồn thầu"},
+      {"title": "Loại"},
+      {"title": "Nhóm"},
+      {"title": "Doanh thu"},
+      {"title": "Chi phí"},
     ];
 
     return Padding(
@@ -57,19 +50,19 @@ class OptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final viewModel = context.read<BiddingReportViewmodel>();
+        // final viewModel = context.read<LoiNhuanViewModel>();
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChangeNotifierProvider.value(
-              value: viewModel,
-              child: BiddingDetailPage(
-                typeThau: TypeThauExtension.fromValue(index + 1),
-              ),
-            ),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => ChangeNotifierProvider.value(
+        //       value: viewModel,
+        //       child: BiddingDetailPage(
+        //         typeThau: TypeThauExtension.fromValue(index + 1),
+        //       ),
+        //     ),
+        //   ),
+        // );
       },
       child: Container(
         decoration: BoxDecoration(

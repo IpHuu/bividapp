@@ -8,6 +8,7 @@ import 'package:bividpharma/pages/system/notify_list_page.dart';
 import 'package:bividpharma/pages/system/profile_page.dart';
 import 'package:bividpharma/pages/system/setting.dart';
 import 'package:bividpharma/pages/tongquan/banhang/view/order_report_page.dart';
+import 'package:bividpharma/pages/tongquan/loinhuan/views/loinhuan_page.dart';
 import 'package:bividpharma/pages/tongquan/thau/view/bidding_report_page.dart';
 import 'package:bividpharma/pages/tongquan/tonghop/view/tonghop_report_page.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/view/inventory_report_page.dart';
@@ -77,7 +78,7 @@ class _MainPageState extends State<MainPage> {
             MenuModel(title: "Tổng quan công ty", route: EmptyFunctionPage()),
             MenuModel(title: "Tổng quan tổng hợp", route: TonghopReportView()),
             MenuModel(title: "Quản lý kinh doanh", route: EmptyFunctionPage()),
-            MenuModel(title: "Tổng quan lợi nhuận", route: EmptyFunctionPage()),
+            MenuModel(title: "Tổng quan lợi nhuận", route: LoinhuanPage()),
             MenuModel(title: "Tổng quan công nợ", route: EmptyFunctionPage()),
             MenuModel(title: "Tổng quan marketing", route: EmptyFunctionPage()),
             MenuModel(title: "Tổng quan thầu", route: BiddingReportView()),

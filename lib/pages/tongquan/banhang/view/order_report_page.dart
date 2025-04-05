@@ -1,17 +1,12 @@
+import 'package:bividpharma/pages/tongquan/banhang/compoments/order_summary.dart';
 import 'package:bividpharma/pages/tongquan/banhang/viewmodel/order_report_viewmodel.dart';
-import 'package:bividpharma/pages/tongquan/thau/compoments/bidding_summay_card.dart';
-import 'package:bividpharma/pages/tongquan/tonkho/compoments/starts_cart.dart';
-import 'package:bividpharma/ui/widgets/cards/summary_card.dart';
-import 'package:bividpharma/ui/widgets/charts/bar_chart.dart';
-import 'package:bividpharma/ui/widgets/charts/pie_chart.dart';
 import 'package:bividpharma/ui/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../ui/widgets/charts/line2_chart.dart';
-import '../../thau/compoments/bidding_chart.dart';
 import '../compoments/order_option_grid.dart';
+import '../compoments/order_report_chart.dart';
 
 class OrderReportView extends StatelessWidget {
   const OrderReportView({Key? key}) : super(key: key);
@@ -97,9 +92,9 @@ class _DashboardBanHangScreen extends State<DashboardBanHangScreen> {
                 child: PageView(
                   controller: _pageController,
                   children: [
-                    const StatsPage(),
-                    const BiddingSummayGroup(),
-                    const BiddingSummayGroup2(),
+                    const OrderSummary1(),
+                    const OrderSummary2(),
+                    const OrderSummary3(),
                   ],
                 ),
               ),
@@ -119,67 +114,33 @@ class _DashboardBanHangScreen extends State<DashboardBanHangScreen> {
               //     print("Selected: $selected"); // Gọi API hoặc cập nhật UI
               //   },
               // ),
-              const SizedBox(height: 16),
-              const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 16,
-                children: [
-                  SummaryCard(),
-                  SummaryCard(),
-                  SummaryCard(),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: const RevenueChart(),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: const LineChart3Sample(),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: const OverviewPieChart(),
-              ),
+              // const SizedBox(height: 16),
+              // const Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   spacing: 16,
+              //   children: [
+              //     SummaryCard(),
+              //     SummaryCard(),
+              //     SummaryCard(),
+              //   ],
+              // ),
+              // const SizedBox(height: 16),
+              // Container(
+              //   margin: const EdgeInsets.symmetric(horizontal: 16),
+              //   padding: const EdgeInsets.all(8),
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(8),
+              //     boxShadow: [
+              //       const BoxShadow(
+              //         color: Colors.black26,
+              //         blurRadius: 4,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: const LineChart3OrderReport(),
+              // ),
 
               const SizedBox(height: 16),
               Container(
@@ -196,7 +157,7 @@ class _DashboardBanHangScreen extends State<DashboardBanHangScreen> {
                     ),
                   ],
                 ),
-                child: const BarChartSample(),
+                child: const BarChartOrderReport(),
               ),
               const SizedBox(height: 16),
               const Padding(

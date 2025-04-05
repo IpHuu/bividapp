@@ -10,14 +10,24 @@ extension CurrencyFormat on num {
 extension MoneyFormatter on double {
   String toShortMoneyFormat() {
     if (this >= 1e9) {
-      return '${(this / 1e9).toStringAsFixed(1).replaceAll('.0', '')}B'; // 1B = 1 tỉ
+      return '${(this / 1e9).toStringAsFixed(1).replaceAll('.0', '')}B đ'; // 1B = 1 tỉ
     } else if (this >= 1e6) {
-      return '${(this / 1e6).toStringAsFixed(1).replaceAll('.0', '')}M'; // 1M = 1 triệu
+      return '${(this / 1e6).toStringAsFixed(1).replaceAll('.0', '')}M đ'; // 1M = 1 triệu
     } else if (this >= 1e3) {
-      return '${(this / 1e3).toStringAsFixed(1).replaceAll('.0', '')}K'; // 1K = 1 ngàn
+      return '${(this / 1e3).toStringAsFixed(1).replaceAll('.0', '')}K đ'; // 1K = 1 ngàn
     } else {
       return toStringAsFixed(0); // Giữ nguyên nếu nhỏ hơn 1000
     }
+  }
+
+  String formatCurrency({int decimalDigits = 0}) {
+    final formatter = NumberFormat("#,###${"0" * decimalDigits}", "en_US");
+    return formatter.format(this);
+  }
+
+  String formatNumber({int decimalDigits = 0}) {
+    final formatter = NumberFormat("#,###${"0" * decimalDigits}", "en_US");
+    return formatter.format(this);
   }
 }
 

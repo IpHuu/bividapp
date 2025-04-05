@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:bividpharma/model/dtos/company/m_company.dart';
-import 'package:bividpharma/model/dtos/reports/tonghop/m_tong_hop.dart';
 import 'package:bividpharma/model/dtos/vattu/m_vattu.dart';
+import 'package:bividpharma/services/providers/danhmuc_provider.dart';
 import 'package:bividpharma/services/providers/report_provider.dart';
 import 'package:flutter/material.dart';
 
-class TongHopReportViewModel with ChangeNotifier {
+class LoiNhuanViewModel with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   String? _errorMessage;
@@ -26,8 +26,6 @@ class TongHopReportViewModel with ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
   }
-
-  List<List<String>>? data;
 
   MVatTu? selectedVatTu;
   List<MVatTu> list = [];
@@ -49,25 +47,32 @@ class TongHopReportViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  List<MTongHop>? listTongHop;
-  void fetchReport(
-      {String? nam, required String tuNam, required String denNam}) async {
+  void fetchReport() async {
     setIsLoading(true);
-    final result = await ReportProvider.baoCaoTongHop(
-      nam: nam,
-      tuNam: tuNam,
-      denNam: denNam,
-    );
+    final result = await DanhMucRepository.fetchCompanyList();
+    result.fold((error) {
+      setIsLoading(false);
+    }, (data) {
+      setIsLoading(false);
+      print(data);
+      listCompany = data.data ?? [];
+      selectedCompany = listCompany.first;
+    });
+  }
+
+  void fetchData() async {
+    setIsLoading(true);
+    final result = await ReportProvider.baoCaoLoiNhuan(tuNam: "", denNam: "");
     result.fold((error) {
       setIsLoading(false);
     }, (data) {
       setIsLoading(false);
       Map<String, dynamic> jsonData = jsonDecode(data.data ?? "");
-      List<MTongHop> reports = (jsonData['Table1'] as List)
-          .map((item) => MTongHop.fromJson(item))
-          .toList();
-      listTongHop = reports;
-      print(reports);
+      // List<MThauReport> reports = (jsonData['Table1'] as List)
+      //     .map((item) => MThauReport.fromJson(item))
+      //     .toList();
+      // listThauData = reports;
+      // print(listThauData);
     });
   }
 }

@@ -1,17 +1,14 @@
-import 'package:bividpharma/pages/tongquan/thau/compoments/bidding_chart.dart';
 import 'package:bividpharma/pages/tongquan/thau/compoments/bidding_options.dart';
 import 'package:bividpharma/pages/tongquan/thau/compoments/bidding_summay_card.dart';
 import 'package:bividpharma/pages/tongquan/thau/viewmodel/bidding_report_viewmodel.dart';
 import 'package:bividpharma/pages/tongquan/tonkho/compoments/filter_sheet.dart';
-import 'package:bividpharma/pages/tongquan/tonkho/compoments/starts_cart.dart';
-import 'package:bividpharma/ui/widgets/cards/summary_card.dart';
-import 'package:bividpharma/ui/widgets/charts/bar_chart.dart';
-import 'package:bividpharma/ui/widgets/charts/line2_chart.dart';
-import 'package:bividpharma/ui/widgets/charts/pie_chart.dart';
 import 'package:bividpharma/ui/widgets/navigation_bar.dart';
+import 'package:bividpharma/utils/extensions/date_time_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../compoments/bidding_bar_chart.dart';
 
 class BiddingReportView extends StatelessWidget {
   const BiddingReportView({Key? key}) : super(key: key);
@@ -51,7 +48,14 @@ class _BiddingReportPageState extends State<BiddingReportPage> {
             context: context,
             selectedCompany: viewmodel.selectedCompany,
             listCompany: viewmodel.listCompany,
-            onFilterApplied: (startDate, endDate, maCty, maVattu) {},
+            onFilterApplied: (startDate, endDate, maCty, maVattu) {
+              print("Ngày bắt đầu: $startDate");
+              print("Ngày kết thúc: $endDate");
+              viewmodel.selectedCompany = maCty;
+              viewmodel.setFromDate(startDate.toFormattedString() ?? "");
+              viewmodel.setToDate(endDate.toFormattedString() ?? "");
+              viewmodel.filterData();
+            },
           ),
         );
       },
@@ -116,21 +120,26 @@ class _DashboardSBiddingcreen extends State<DashboardSBiddingcreen> {
                 ),
               ),
               const SizedBox(height: 8),
+
               SizedBox(
                 height: 280,
                 child: PageView(
                   controller: _pageController,
                   children: [
-                    const StatsPage(),
-                    const BiddingSummayGroup(),
-                    const BiddingSummayGroup2(),
+                    const SummaryPage1(),
+                    const SummaryPage2(),
+                    const SummaryPage3(),
+                    const SummaryPage4(),
+                    const SummaryPage5(),
+                    const SummaryPage6(),
+                    const SummaryPage7(),
                   ],
                 ),
               ),
               const SizedBox(height: 8),
               SmoothPageIndicator(
                 controller: _pageController,
-                count: 3, // Số trang
+                count: 7, // Số trang
                 effect: const WormEffect(
                   dotHeight: 10,
                   dotWidth: 10,
@@ -143,67 +152,67 @@ class _DashboardSBiddingcreen extends State<DashboardSBiddingcreen> {
               //     print("Selected: $selected"); // Gọi API hoặc cập nhật UI
               //   },
               // ),
-              const SizedBox(height: 16),
-              const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 16,
-                children: [
-                  SummaryCard(),
-                  SummaryCard(),
-                  SummaryCard(),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: const RevenueChart(),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: const LineChart3Sample(),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: const OverviewPieChart(),
-              ),
+              // const SizedBox(height: 16),
+              // const Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   spacing: 16,
+              //   children: [
+              //     SummaryCard(),
+              //     SummaryCard(),
+              //     SummaryCard(),
+              //   ],
+              // ),
+              // const SizedBox(height: 16),
+              // Container(
+              //   margin: const EdgeInsets.symmetric(horizontal: 16),
+              //   padding: const EdgeInsets.all(8),
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(8),
+              //     boxShadow: [
+              //       const BoxShadow(
+              //         color: Colors.black26,
+              //         blurRadius: 4,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: const RevenueChart(),
+              // ),
+              // const SizedBox(height: 16),
+              // Container(
+              //   margin: const EdgeInsets.symmetric(horizontal: 16),
+              //   padding: const EdgeInsets.all(8),
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(8),
+              //     boxShadow: [
+              //       const BoxShadow(
+              //         color: Colors.black26,
+              //         blurRadius: 4,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: const LineChart3Sample(),
+              // ),
+              // const SizedBox(height: 16),
+              // Container(
+              //   margin: const EdgeInsets.symmetric(horizontal: 16),
+              //   padding: const EdgeInsets.all(8),
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(8),
+              //     boxShadow: [
+              //       const BoxShadow(
+              //         color: Colors.black26,
+              //         blurRadius: 4,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: const OverviewPieChart(),
+              // ),
 
               const SizedBox(height: 16),
               Container(
@@ -220,7 +229,7 @@ class _DashboardSBiddingcreen extends State<DashboardSBiddingcreen> {
                     ),
                   ],
                 ),
-                child: const BarChartSample(),
+                child: const BiddingBarChart(),
               ),
 
               const SizedBox(height: 16),

@@ -1,5 +1,34 @@
 import 'package:flutter/material.dart';
 
+class SummaryCardGroup extends StatelessWidget {
+  const SummaryCardGroup({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: GridView.count(
+        crossAxisCount: 2, // 2 cột
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 1.5, // Căn chỉnh kích thước
+        physics:
+            const NeverScrollableScrollPhysics(), // Không scroll vì dùng PageView
+        children: [
+          const StatsCard(
+              icon: Icons.bar_chart, value: "35K", label: "Total Sales"),
+          const StatsCard(
+              icon: Icons.trending_up, value: "2,153", label: "Average Sales"),
+          const StatsCard(
+              icon: Icons.bar_chart, value: "35K", label: "Total Sales"),
+          const StatsCard(
+              icon: Icons.trending_up, value: "2,153", label: "Average Sales"),
+        ],
+      ),
+    );
+  }
+}
+
 class StatsPage extends StatelessWidget {
   const StatsPage({Key? key}) : super(key: key);
 

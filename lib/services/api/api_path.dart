@@ -16,7 +16,9 @@ enum ApiType {
   danhMucKhachHang,
   baoCaoTonKho,
   baoCaoThau,
-  baoCaoTongHop
+  baoCaoTongHop,
+  baoCaoLoiNhuan,
+  baoCaoBanHang,
 }
 
 class ApiPath {
@@ -33,6 +35,8 @@ class ApiPath {
   static String baoCaoTonKho = "/baocao/bao-cao-tong-quan-ton-kho";
   static String baoCaoThau = "/baocao/bao-cao-tong-quan-thau";
   static String baoCaoTongHop = "/baocao/bao-cao-tong-quan-tong-hop";
+  static String baoCaoLoiNhuan = "/baocao/bao-cao-tong-quan-loi-nhuan";
+  static String baoCaoBanHang = "/baocao/bao-cao-tong-ban-hang";
 }
 
 extension ApiMethod on ApiType {
@@ -105,6 +109,10 @@ extension ApiUrl on ApiType {
         return ApiPath.baoCaoThau;
       case ApiType.baoCaoTongHop:
         return ApiPath.baoCaoTongHop;
+      case ApiType.baoCaoLoiNhuan:
+        return ApiPath.baoCaoLoiNhuan;
+      case ApiType.baoCaoBanHang:
+        return ApiPath.baoCaoBanHang;
       default:
         return '';
     }
